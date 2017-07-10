@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T16:24:42-05:00
+ * @Last modified time: 2017-07-10T17:00:20-05:00
  */
 
 import 'login/login.styles'
@@ -12,9 +12,10 @@ import templateUrl from 'login/login.template'
 
 const controller =
   class TwtrLoginController {
-    constructor ($log, loginService) {
+    constructor ($log, loginService, $state) {
       'ngInject'
       this.service = loginService
+      this.$state = $state
       $log.debug('twtr-login ...')
     }
 
@@ -26,8 +27,12 @@ const controller =
       this.service.authenticate(this.username, this.password)
     }
 
-    join () {
+    logout () {
+      this.service.logout()
+    }
 
+    join () {
+      this.$state.go('register')
     }
   }
 

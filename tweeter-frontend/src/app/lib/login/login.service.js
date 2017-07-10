@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T16:22:05-05:00
+ * @Last modified time: 2017-07-10T17:30:41-05:00
  */
 
 export class LoginService {
@@ -30,22 +30,21 @@ export class LoginService {
   authenticate (username, password) {
     // checks if the username is one of the known usernames, and the password is 'password'
 
-    let userObject = { username: username, password: password }
+    let userObject = { credentials: { username: username, password: password } }
 
     this.$http({
       method: 'POST',
-      url: 'http://localhost:8888/clickergame/user/validate',
+      url: 'http://localhost:8888/user/users/validate/user',
       data: userObject,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'content-type': 'application/json'
       }
     }).then((response) => {
-      if (response.data !== false) {
-        this.localStorageService.set('currentUser', username)
-        this.$state.go('game')
+      if (response.data.username !== undefined) {
+        this.localStorageService.set('currentUser', response.data)
       }
-      this.$log.log(`Success going to and from server ${response.data}`)
+      this.$log.log(`Success going to and from server ${response.data.username}`)
     }, (response) => {
       this.$log.log(`Success going to and from server, but returned an error ${response.status}`)
     })

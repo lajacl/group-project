@@ -1,0 +1,27 @@
+<div class="container-fluid" ng-hide="login.successfulLogin()">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon2">Username: </span>
+        <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon6" ng-model="login.username">
+        <span class="input-group-addon" id="sizing-addon2">Password: </span>
+        <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon6" ng-model="login.password">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon1">Email: </span>
+        <input type="email" class="form-control" placeholder="checkme@gmail.com" aria-describedby="sizing-addon1" ng-model="login.email">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon3">First Name: </span>
+        <input type="text" class="form-control" placeholder="Bob" aria-describedby="sizing-addon3" ng-model="login.firstName">
+        <span class="input-group-addon" id="sizing-addon3">Last Name: </span>
+        <input type="text" class="form-control" placeholder="Builder" aria-describedby="sizing-addon3" ng-model="login.lastName">
+        <span class="input-group-addon" id="sizing-addon3">Phone Number: </span>
+        <input type="text" class="form-control" placeholder="(123) 456-7890" aria-describedby="sizing-addon3" ng-model="login.phoneNumber">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12"><span class="twtr-btn" ng-click="login.join()">Register</span></div>
+    </div>
+  </div>
+</div>
