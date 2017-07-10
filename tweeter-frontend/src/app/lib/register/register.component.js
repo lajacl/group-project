@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: register.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T16:57:53-05:00
+ * @Last modified time: 2017-07-10T17:49:08-05:00
  */
  import 'register/register.styles'
  import templateUrl from 'register/register.template'
@@ -19,7 +19,7 @@
      }
 
      join () {
-
+       this.service.register(this.username, this.password, this.email, this.firstName, this.lastName, this.phoneNumber)
      }
    }
 
@@ -29,6 +29,10 @@
    controllerAs: 'register',
    bindings: {
      username: '<',
-     password: '<'
+     password: '<',
+     email: '<',
+     firstName: '<',
+     lastName: '<',
+     phoneNumber: '<'
    }
  }
