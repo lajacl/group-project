@@ -12,28 +12,28 @@ import templateUrl from 'profile/profile.template'
 
 const controller =
   class TwtrProfileController {
-    constructor ($log) {
+    constructor ($log, profileService, localStorageService) {
       'ngInject'
-      this.user = undefined
+      // this.user = undefined
+      this.service = profileService
       $log.debug('twtr-profile')
+      this.$log = $log
+      this.localStorageService = localStorageService
     }
 
-    get name () {
-      return this.user.name
+    get following () {
+      return ['shagginwaggon', 'daphyduckface', 'readyfreddie', 'msdinkley']
     }
 
-    get id () {
-      return this.user.id
+    get followers () {
+      return ['shagginwaggon']
     }
 
-    get username () {
-      return this.user.username
-    }
   }
 
 export const twtrProfile = {
   controller,
   templateUrl,
-  bindings: { user: '<' },
-  controllerAs: 'profile'
+  controllerAs: 'profile',
+  bindings: { user: '=' }
 }

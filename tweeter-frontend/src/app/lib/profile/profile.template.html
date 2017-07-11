@@ -1,12 +1,57 @@
 <div class="container">
-  <div class="jumbotron">
-    <h3>Some User</h3>
-    <ul class="list-group">
-      <li class="list-group-item">Name: {{profile.name}}</li>
-      <li class="list-group-item">Id: {{profile.id}}</li>
-      <li class="list-group-item">Username: {{profile.username}}</li>
-    </ul>
+<div class="jumbotron">
 
-    <a class="btn btn-primary" ui-sref="users" ui-sref-active="active">Users</a>
+  <div class="card text-center">
+    <div>
+      <h3 class="card-header">{{profile.user.username}}'s Profile</h3>
+    </div>
+    <div class="card-block">
+      <p class="card-title">Name: {{profile.user.profile.firstName}} {{profile.user.profile.lastName}}</p>
+      <p class="card-text">Email: {{profile.user.profile.email}}</p>
+      <p class="card-text">Phone Number: {{profile.user.profile.phone}}</p>
+      <a class="btn btn-primary" ui-sref="feed" ui-sref-active="active">View Tweets</a>
+    </div>
+    <div class="card-footer text-muted">
+      Joined On: {{profile.user.joined | date: 'MMM dd, yyyy'}}
+      <div class="card-block">
+        <a class="card-link"  href ng-click="modifyProfile()">Edit Profile</a> |
+        <a class="card-link"  ui-sref="users" ui-sref-active="active">Find More Users</a>
+      </div>
+    </div>
   </div>
+
+  <form class="ng-hide">
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon1">Email: </span>
+        <input ng-model="profile.email" type="email" class="form-control" placeholder="checkme@gmail.com" aria-describedby="sizing-addon1" ng-model="register.email">
+        <span class="input-group-addon" id="sizing-addon2">Password: </span>
+        <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon6" ng-model="register.password">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon3">First Name: </span>
+        <input type="text" class="form-control" placeholder="Bob" aria-describedby="sizing-addon3" ng-model="register.firstName">
+        <span class="input-group-addon" id="sizing-addon3">Last Name: </span>
+        <input type="text" class="form-control" placeholder="Builder" aria-describedby="sizing-addon3" ng-model="register.lastName">
+        <span class="input-group-addon" id="sizing-addon3">Phone Number: </span>
+        <input type="text" class="form-control" placeholder="(123) 456-7890" aria-describedby="sizing-addon3" ng-model="register.phoneNumber">
+      </div>
+      <div>{{profile.updateError()}}</div>
+      <div><span class="btn btn-primary" ng-click="profile.update()">Update Profile</span></div>
+
+  </form>
+
+    <div class="card">
+    <div class="card-block">
+        <p>Following ({{profile.following.length}}):</p>
+      <button type="button" class="btn btn-info" ng-repeat="username in profile.following" ui-sref="profile({ username: username })" ui-sref-active="active">{{username}}</button>
+    </div>
+    </div>
+
+    <div class="card">
+    <div class="card-block">
+      <p>Followers ({{profile.followers.length}}):</p>
+      <button type="button" class="btn btn-info" ng-repeat="username in profile.followers" ui-sref="profile({ username: username })" ui-sref-active="active">{{username}}</button>
+    </div>
+    </div>
+</div>
 </div>
