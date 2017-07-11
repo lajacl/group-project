@@ -4,7 +4,7 @@
 
     <div class="list-group">
       <a class="list-group-item" ng-repeat="tweet in tweets.tweets" ui-sref="tweet({ tweetId: tweet.id })" ui-sref-active="active">
-        {{tweet.author.username}} ({{tweet.posted}})
+        {{tweet.id}}: {{tweet.author.username}} ({{tweet.posted}})
       </a>
     </div>
   </div>
