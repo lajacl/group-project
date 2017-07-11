@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.config.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T10:28:01-05:00
+ * @Last modified time: 2017-07-11T11:28:03-05:00
  */
 
 export const config =
@@ -15,7 +15,7 @@ export const config =
       url: '/tweets/{tweetId}',
       component: 'twtrTweet',
       resolve: {
-        twt: function (tweetsService, $transition$) {
+        twt: function ($transition$, tweetsService) {
           // console.log(`twt-resolve: ${$transition$.params().tweetId}`)
           return tweetsService
                   .getTweet(Number($transition$.params().tweetId))

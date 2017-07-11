@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweets.service.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T10:34:32-05:00
+ * @Last modified time: 2017-07-11T11:28:48-05:00
  */
 
 export class TweetsService {
@@ -32,7 +32,14 @@ export class TweetsService {
     //   (response) => console.error(`getTweet failed`)
     // )
     return this.http.get(`http://localhost:8888/tweet/tweets/${id}`)
-              .then((res) => res.data,
-                    (res) => console.error(`getTweet(${id}) failed`))
+            .then((res) => res.data,
+                  (res) => console.error(`getTweet(${id}) failed`))
+    // return this.http({
+    //   method: 'GET',
+    //   url: `http://localhost:8888/tweet/tweets/`,
+    //   params: {'tweetId': String(id)}
+    // })
+    // .then((res) => res.data,
+    //       (res) => console.error(`getTweet(${id}) failed`))
   }
 }
