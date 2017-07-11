@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T13:47:53-05:00
+ * @Last modified time: 2017-07-11T13:59:50-05:00
  */
  import 'feed/feed.styles'
  import templateUrl from 'feed/feed.template'
@@ -18,8 +18,8 @@
        $log.debug('twtr-feed ...')
      }
 
-     usersName () {
-       this.username = this.service.username()
+     get usersName () {
+       return this.service.username()
      }
    }
 
