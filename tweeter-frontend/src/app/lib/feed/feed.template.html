@@ -4,11 +4,27 @@
   </div>
 </div>
 
+<div class="row">
+  <twtr-login></twtr-login>
+</div>
+
+<div class="row">
+  <twtr-post></twtr-post>
+</div>
+
 <div class="container">
   <div class="jumbotron">
     <div class="row">
-      <div class="col-md-12" ng-repeat="tweet in feed.tweets track by $index" >
-        {{tweet.id}} {{tweet.author.username}}: {{tweet.content}}
+      <div class="col-md-12">
+        <div class="panel panel-info" ng-repeat="tweet in feed.tweets track by $index">
+          <div class="panel-header">
+            <h3 class="panel-title">Date: {{tweet.posted | date : 'fullDate'}}</h3>
+          </div>
+
+          <div class="panel-body">{{tweet.content}}</div>
+
+          <div class="panel-footer">Author: {{tweet.author.username}}</div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,13 +1,11 @@
-<div class="container">
+<div class="container" ng-if="loginService.successfulLogin()">
   <div class="jumbotron">
-    <h3>Tweet Something</h3>
-    <h4>User: {{post.username}}</h4>
-    <h4>Pwd: {{post.password}}</h4>
+    <h3>Tweet what's on your mind</h3>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="..." ng-model="post.content">
+      <input type="text" class="form-control" aria-describedby="sizing-addon3" placeholder="How's your day going?" ng-model="post.content">
+      <span class="input-group-btn">
+        <a class="btn btn-primary" ng-click="post.post()">Post</a>
+      </span>
     </div>
-
-    <a class="btn btn-primary" ng-click="post.post()">Post</a>
-    <a class="btn btn-primary" ui-sref="tweets" ui-sref-active="active">Tweets</a>
   </div>
 </div>

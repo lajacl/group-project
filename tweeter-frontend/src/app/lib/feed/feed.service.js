@@ -4,12 +4,11 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T13:58:58-05:00
+ * @Last modified time: 2017-07-11T17:28:12-05:00
  */
  export class FeedService {
-   constructor ($q, localStorageService, $http, $log) {
+   constructor (localStorageService, $http, $log) {
      'ngInject'
-     this.$q = $q
      this.localStorageService = localStorageService
      this.$http = $http
      this.$log = $log
