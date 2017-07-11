@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: post.service.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T13:11:41-05:00
+ * @Last modified time: 2017-07-11T14:23:17-05:00
  */
 
 export class PostService {
@@ -16,13 +16,11 @@ export class PostService {
 
   post (username, password, content) {
     return this.http.post('http://localhost:8888/tweet/tweets', {
-      params: { tweet: {
-        content,
-        credentials: {
-          username,
-          password
-        }
-      }}
+      content,
+      credentials: {
+        username,
+        password
+      }
     })
   }
 }

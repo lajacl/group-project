@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: post.component.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T13:36:05-05:00
+ * @Last modified time: 2017-07-11T14:46:00-05:00
  */
 
 import 'post/post.styles'
@@ -12,22 +12,26 @@ import templateUrl from 'post/post.template'
 
 const controller =
   class TwtrPostController {
-    constructor ($log, postService) {
+    constructor ($log, postService, $state) {
       'ngInject'
       this.username = undefined
       this.password = undefined
       this.postService = postService
+      this.state = $state
       $log.log('twtr-post ...')
     }
 
     post () {
-      return this.postService.post(this.username, this.password, this.content)
+      this.postService.post(this.username, this.password, this.content)
+      this.state.go('post',
+                    { username: this.username, password: this.password },
+                    { reload: true })
     }
   }
 
 export const twtrPost = {
   controller,
   templateUrl,
-  bindings: { username: '<' },
+  bindings: { username: '<', password: '<' },
   controllerAs: 'post'
 }
