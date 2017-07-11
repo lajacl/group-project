@@ -156,4 +156,8 @@ public class UserController {
 				.collect(Collectors.toList());
 	}
 	
+	@PostMapping("users/validate/user")
+	public TweetUserDto validateAUser(@RequestBody TweetUserCredOnlyDto tweetUser, HttpServletResponse response) {
+		return tMapper.tUserDto(uService.checkUserCredentials(tweetUser.getCredentials()));
+	}
 }
