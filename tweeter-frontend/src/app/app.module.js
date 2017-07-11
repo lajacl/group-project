@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: app.module.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-10T14:25:19-05:00
+ * @Last modified time: 2017-07-11T06:44:49-05:00
  */
 
  import ngLocalStorage from 'angular-local-storage'
@@ -13,6 +13,8 @@
  import twtrLogin from 'login/login.module'
  import twtrUsers from 'users/users.module'
  import twtrProfile from 'profile/profile.module'
+ import twtrTweets from 'tweets/tweets.module'
+ import twtrTweet from 'tweet/tweet.module'
 
  import { twtrApp } from 'app/app.component'
  import { config } from 'app/app.config'
@@ -24,7 +26,9 @@
     ngUiRouter,
     twtrLogin,
     twtrUsers,
-    twtrProfile
+    twtrProfile,
+    twtrTweets,
+    twtrTweet
   ])
   .component('twtrApp', twtrApp)
   .config(config)
