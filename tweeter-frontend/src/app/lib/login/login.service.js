@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T17:30:41-05:00
+ * @Last modified time: 2017-07-11T13:23:18-05:00
  */
 
 export class LoginService {
@@ -43,6 +43,7 @@ export class LoginService {
     }).then((response) => {
       if (response.data.username !== undefined) {
         this.localStorageService.set('currentUser', response.data)
+        this.localStorageService.set('password', password)
       }
       this.$log.log(`Success going to and from server ${response.data.username}`)
     }, (response) => {

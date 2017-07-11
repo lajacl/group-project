@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="jumbotron">
+    <h3>Tweet Something</h3>
+    <h4>User: {{post.username}}</h4>
+    <h4>Pwd: {{post.password}}</h4>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="..." ng-model="post.content">
+    </div>
+
+    <a class="btn btn-primary" ng-click="post.post()">Post</a>
+    <a class="btn btn-primary" ui-sref="tweets" ui-sref-active="active">Tweets</a>
+  </div>
+</div>
