@@ -1,8 +1,11 @@
 /**
- * @Author: Anthony Perry
- * @Date:   2017-07-10T11:11:59-05:00
- * @Email:  atperry7@gmail.com
+ * @Author: Christian Schmitt
+ * @Date:   2017-07-10T14:53:25-05:00
+ * @Email:  crschmit@gmail.com
  * @Filename: tweet.service.js
- * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T16:31:49-05:00
+ * @Last modified by:   Christian Schmitt
+ * @Last modified time: 2017-07-11T06:35:55-05:00
  */
+
+export class TweetService {
+}

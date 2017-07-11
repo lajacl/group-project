@@ -1,8 +1,32 @@
 /**
- * @Author: Anthony Perry
- * @Date:   2017-07-10T11:11:59-05:00
- * @Email:  atperry7@gmail.com
+ * @Author: Christian Schmitt
+ * @Date:   2017-07-10T14:53:25-05:00
+ * @Email:  crschmit@gmail.com
  * @Filename: tweet.config.js
- * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T16:31:52-05:00
+ * @Last modified by:   Christian Schmitt
+ * @Last modified time: 2017-07-11T08:17:07-05:00
  */
+
+export const config =
+  ($stateProvider) => {
+    'ngInject'
+    $stateProvider.state({
+      name: 'tweet',
+      url: '/tweets/{tweetId}',
+      component: 'twtrTweet',
+      resolve: {
+        twt: function (tweetsService, $transition$) {
+          return tweetsService
+                  .getTweet(parseInt($transition$.params().tweetId))
+                  .then(
+                    function successCB (response) {
+                      return response.data
+                    },
+                    function errorCB (response) {
+                      return undefined
+                    }
+                  )
+        }
+      }
+    })
+  }

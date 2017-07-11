@@ -1,8 +1,17 @@
 /**
- * @Author: Anthony Perry
- * @Date:   2017-07-10T11:11:59-05:00
- * @Email:  atperry7@gmail.com
+ * @Author: Christian Schmitt
+ * @Date:   2017-07-10T14:53:25-05:00
+ * @Email:  crschmit@gmail.com
  * @Filename: tweet.module.js
- * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T16:31:51-05:00
+ * @Last modified by:   Christian Schmitt
+ * @Last modified time: 2017-07-11T06:48:31-05:00
  */
+
+import { twtrTweet } from 'tweet/tweet.component'
+import { config } from 'tweet/tweet.config'
+
+export default ng
+  .module('twtr.tweet', [])
+  .component('twtrTweet', twtrTweet)
+  .config(config)
+  .name

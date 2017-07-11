@@ -3,8 +3,8 @@
  * @Date:   2017-07-10T10:55:31-05:00
  * @Email:  crschmit@gmail.com
  * @Filename: app.module.js
- * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T19:28:14-05:00
+ * @Last modified by:   Christian Schmitt
+ * @Last modified time: 2017-07-11T06:44:49-05:00
  */
 
  import ngLocalStorage from 'angular-local-storage'
@@ -14,7 +14,10 @@
  import twtrRegister from 'register/register.module'
  import twtrUsers from 'users/users.module'
  import twtrProfile from 'profile/profile.module'
+ import twtrTweets from 'tweets/tweets.module'
+ import twtrTweet from 'tweet/tweet.module'
  import twtrFeed from 'feed/feed.module'
+
 
  import { twtrApp } from 'app/app.component'
  import { config } from 'app/app.config'
@@ -28,7 +31,10 @@
     twtrRegister,
     twtrUsers,
     twtrProfile,
+    twtrTweets,
+    twtrTweet,
     twtrFeed
+
   ])
   .component('twtrApp', twtrApp)
   .config(config)
