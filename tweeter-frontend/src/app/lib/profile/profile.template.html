@@ -3,16 +3,16 @@
 
   <div class="card text-center">
     <div>
-      <h3 class="card-header">{{profile.username}}'s Profile</h3>
+      <h3 class="card-header">{{profile.user.username}}'s Profile</h3>
     </div>
     <div class="card-block">
-      <p class="card-title">Name: {{profile.fname + ' ' + profile.lname}}</p>
-      <p class="card-text">Email: {{profile.email}}</p>
-      <p class="card-text">Phone Number: {{profile.phone}}</p>
-      <a class="btn btn-primary" ui-sref="feed({ username: username })" ui-sref-active="active">View Tweets</a>
+      <p class="card-title">Name: {{profile.user.profile.firstName}} {{profile.user.profile.lastName}}</p>
+      <p class="card-text">Email: {{profile.user.profile.email}}</p>
+      <p class="card-text">Phone Number: {{profile.user.profile.phone}}</p>
+      <a class="btn btn-primary" ui-sref="feed" ui-sref-active="active">View Tweets</a>
     </div>
     <div class="card-footer text-muted">
-      Joined On: {{profile.joined | date: 'dd-MM-yyyy'}}
+      Joined On: {{profile.user.joined | date: 'MMM dd, yyyy'}}
       <div class="card-block">
         <a class="card-link"  href ng-click="modifyProfile()">Edit Profile</a> |
         <a class="card-link"  ui-sref="users" ui-sref-active="active">Find More Users</a>
