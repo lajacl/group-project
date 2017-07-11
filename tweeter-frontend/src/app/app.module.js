@@ -11,10 +11,13 @@
  import ngUiRouter from 'angular-ui-router'
 
  import twtrLogin from 'login/login.module'
+ import twtrRegister from 'register/register.module'
  import twtrUsers from 'users/users.module'
  import twtrProfile from 'profile/profile.module'
  import twtrTweets from 'tweets/tweets.module'
  import twtrTweet from 'tweet/tweet.module'
+ import twtrFeed from 'feed/feed.module'
+
 
  import { twtrApp } from 'app/app.component'
  import { config } from 'app/app.config'
@@ -25,10 +28,13 @@
     ngLocalStorage,
     ngUiRouter,
     twtrLogin,
+    twtrRegister,
     twtrUsers,
     twtrProfile,
     twtrTweets,
-    twtrTweet
+    twtrTweet,
+    twtrFeed
+
   ])
   .component('twtrApp', twtrApp)
   .config(config)
