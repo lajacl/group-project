@@ -7,11 +7,13 @@
  * @Last modified time: 2017-07-10T13:53:21-05:00
  */
 
+import { ProfileService } from 'profile/profile.service'
 import { twtrProfile } from 'profile/profile.component'
 import { config } from 'profile/profile.config'
 
 export default ng
   .module('twtr.profile', [])
+  .service('profileService', ProfileService)
   .component('twtrProfile', twtrProfile)
   .config(config)
   .name
