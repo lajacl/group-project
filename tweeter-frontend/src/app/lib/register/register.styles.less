@@ -4,22 +4,30 @@
  * @Email:  atperry7@gmail.com
  * @Filename: register.styles.less
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T17:02:47-05:00
+ * @Last modified time: 2017-07-10T19:09:23-05:00
  */
  @import "~bootstrap/less/bootstrap";
 
  .twtr-register {
-   .make-row();
+   .row {
+     min-height: 1px;
+     margin-top: 10px;
+   }
    .jumbotron {
      .make-md-column(12);
      text-align: center;
+   }
+
+   .twtr-label {
+     text-align: center;
+     color: red;
    }
 
    .twtr-btn {
      .btn;
      .btn-lg;
      .btn-primary;
-     margin-top: 30px;
+
    }
  }
 
