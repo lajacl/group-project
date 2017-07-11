@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: register.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T19:04:49-05:00
+ * @Last modified time: 2017-07-11T13:23:42-05:00
  */
  export class RegisterService {
    constructor ($q, localStorageService, $http, $log, $state) {
@@ -32,6 +32,7 @@
      }).then((response) => {
        if (response.data.username !== undefined) {
          this.localStorageService.set('currentUser', username)
+         this.localStorageService.set('password', password)
        }
 
        this.$log.log(`Success going to and from server ${response.data.username}`)
