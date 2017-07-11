@@ -15,8 +15,8 @@ export const config =
       url: '/users/{username}/profile',
       component: 'twtrProfile',
       resolve: {
-        user: function (usersService, $transition$) {
-          return usersService.getUserByUName($transition$.params().username)
+        username: function (profileService, $transition$) {
+          return profileService.getUser($transition$.params().username)
         }
       }
     })
