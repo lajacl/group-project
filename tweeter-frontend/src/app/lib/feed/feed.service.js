@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T13:14:38-05:00
+ * @Last modified time: 2017-07-11T13:46:35-05:00
  */
  export class FeedService {
    constructor ($q, localStorageService, $http, $log) {
@@ -14,14 +14,18 @@
      this.$http = $http
      this.$log = $log
    }
+   user = this.localStorageService.get('currentUser')
+
+   username () {
+     return this.user.username !== null ? this.user.username : 'Feed'
+   }
 
    displayTweets () {
      if (this.localStorageService.get('currentUser') !== null) {
-       let user = this.localStorageService.get('currentUser')
-       this.$log.log(`Check before server ${user.username}`)
+       this.$log.log(`Check before server ${this.user.username}`)
        return this.$http({
          method: 'GET',
-         url: 'http://localhost:8888/user/users/@' + user.username + '/feed'
+         url: 'http://localhost:8888/user/users/@' + this.user.username + '/feed'
        }).then((response) => {
          if (response.data !== undefined) {
            return response.data
