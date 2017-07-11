@@ -105,6 +105,7 @@ public class UserService {
 		TweetUser user = checkUserCredentials(creds.getCredentials());	
 		if (user != null && username.equals(user.getCredentials().getUsername())) {
 			user.setIsActive(false);
+			userRepository.save(user);
 		} else {
 			throw new EntityNotFoundException();
 		}
