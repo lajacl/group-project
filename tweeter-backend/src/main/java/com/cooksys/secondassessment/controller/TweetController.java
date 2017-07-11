@@ -58,13 +58,13 @@ public class TweetController {
 	}
 	
 	@GetMapping("tweets/{id}")
-	public Tweet getTweetById(@PathVariable Integer id, HttpServletResponse response) {
-		return tService.getById(id);
+	public TweetWithIdDto getTweetById(@PathVariable Integer id, HttpServletResponse response) {
+		return tMapper.tWithIdDto(tService.getById(id));
 	}
 	
 	@DeleteMapping("tweets/{id}")
-	public Tweet deleteTweetById(@PathVariable Integer id, HttpServletResponse response) {
-		return tService.deleteById(id);
+	public TweetWithIdDto deleteTweetById(@PathVariable Integer id, HttpServletResponse response) {
+		return tMapper.tWithIdDto(tService.deleteById(id));
 	}
 	
 	@PostMapping("tweets/{id}/like")

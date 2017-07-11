@@ -3,8 +3,27 @@
  * @Date:   2017-07-10T11:10:40-05:00
  * @Email:  crschmit@gmail.com
  * @Filename: login.styles.less
- * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-10T11:36:58-05:00
+ * @Last modified by:   Anthony Perry
+ * @Last modified time: 2017-07-10T16:26:49-05:00
  */
 
  @import "~bootstrap/less/bootstrap";
+
+ .twtr-login {
+   .make-row();
+   .jumbotron {
+     .make-md-column(12);
+     text-align: center;
+   }
+
+   .twtr-btn {
+     .btn;
+     .btn-lg;
+     .btn-primary;
+     margin-top: 30px;
+   }
+ }
+
+ twtr-login {
+   .twtr-login;
+ }
