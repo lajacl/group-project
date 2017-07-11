@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T08:39:49-05:00
+ * @Last modified time: 2017-07-11T08:47:45-05:00
  */
  export class FeedService {
    constructor ($q, localStorageService, $http, $log, $state) {
@@ -30,10 +30,13 @@
          }
          this.$log.log(`Success going to server ${response.data}`)
        }, (response) => {
-         this.$log.log(`Success going to and from server, but returned an error ${response.status} ${response.header} ${response.data}`)
-         for (let variable of response.data) {
-           this.$log.log(`User: ${variable.author.username}`)
+         this.$log.log(`Success going to and from server, but returned an error ${response.status}`)
+         if (response.status === 302) {
+           for (let variable of response.data) {
+             this.$log.log(`User: ${variable.author.username}`)
+           }
          }
+
        })
      } else {
        this.$http({
