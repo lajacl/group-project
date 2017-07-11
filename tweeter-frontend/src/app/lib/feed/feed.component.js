@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T19:27:35-05:00
+ * @Last modified time: 2017-07-11T13:05:54-05:00
  */
  import 'feed/feed.styles'
  import templateUrl from 'feed/feed.template'
@@ -17,15 +17,13 @@
        this.$state = $state
        $log.debug('twtr-feed ...')
      }
-
-     showDisplayOfTweet () {
-       return this.service.displayTweets()
-     }
-
    }
 
  export const twtrFeed = {
    controller,
    templateUrl,
-   controllerAs: 'feed'
+   controllerAs: 'feed',
+   bindings: {
+     tweets: '='
+   }
  }

@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T19:15:42-05:00
+ * @Last modified time: 2017-07-11T12:51:15-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -12,6 +12,11 @@
      $stateProvider.state({
        name: 'feed',
        url: '/feed',
-       component: 'twtrFeed'
+       component: 'twtrFeed',
+       resolve: {
+         tweets: (feedService) => {
+           return feedService.displayTweets()
+         }
+       }
      })
    }
