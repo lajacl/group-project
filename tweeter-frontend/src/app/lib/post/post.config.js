@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: post.config.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T13:24:32-05:00
+ * @Last modified time: 2017-07-11T14:16:43-05:00
  */
 
 export const config =
@@ -17,6 +17,9 @@ export const config =
       resolve: {
         username: function ($transition$, localStorageService) {
           return localStorageService.get('currentUser').username
+        },
+        password: function ($transition$, localStorageService) {
+          return localStorageService.get('password')
         }
       }
     })
