@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweets.config.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T06:21:18-05:00
+ * @Last modified time: 2017-07-11T08:08:52-05:00
  */
 
 export const config =
@@ -16,7 +16,14 @@ export const config =
       component: 'twtrTweets',
       resolve: {
         allTweets: function (tweetsService) {
-          return tweetsService.getAllTweets()
+          return tweetsService.getAllTweets().then(
+            function successCB (response) {
+              return response.data
+            },
+            function errorCB (response) {
+              return undefined
+            }
+          )
         }
       }
     })

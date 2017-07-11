@@ -4,12 +4,21 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweets.service.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T06:18:54-05:00
+ * @Last modified time: 2017-07-11T08:12:59-05:00
  */
 
 export class TweetsService {
-  constructor (tweetsData) {
+  constructor ($http) {
     'ngInject'
-    Object.assign(this, tweetsData)
+    // Object.assign(this, tweetsData)
+    this.http = $http
+  }
+
+  getAllTweets () {
+    return this.http.get('http://localhost:8888/tweet/tweets')
+  }
+
+  getTweet (id) {
+    return this.http.get(`http://localhost:8888/tweet/tweets/{id}`)
   }
 }
