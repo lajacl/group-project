@@ -4,23 +4,25 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T13:59:50-05:00
+ * @Last modified time: 2017-07-11T22:08:17-05:00
  */
  import 'feed/feed.styles'
  import templateUrl from 'feed/feed.template'
 
  const controller =
    class TwtrFeedController {
-     constructor ($log, feedService, $state) {
+     constructor ($log, feedService, $state, loginService) {
        'ngInject'
        this.service = feedService
        this.$state = $state
+       this.loginService = loginService
        $log.debug('twtr-feed ...')
      }
 
-     get usersName () {
-       return this.service.username()
+     hasCurrentUser () {
+       return this.loginService.isAuthenticated()
      }
+
    }
 
  export const twtrFeed = {
@@ -28,7 +30,6 @@
    templateUrl,
    controllerAs: 'feed',
    bindings: {
-     tweets: '=',
-     username: '@'
+     tweets: '='
    }
  }

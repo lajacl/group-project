@@ -8,10 +8,12 @@
  */
 
 import { twtrTweet } from 'tweet/tweet.component'
+import { TweetService } from 'tweet/tweet.service'
 import { config } from 'tweet/tweet.config'
 
 export default ng
   .module('twtr.tweet', [])
+  .service('tweetService', TweetService)
   .component('twtrTweet', twtrTweet)
   .config(config)
   .name

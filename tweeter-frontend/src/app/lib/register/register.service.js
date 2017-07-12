@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: register.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T13:23:42-05:00
+ * @Last modified time: 2017-07-12T08:54:27-05:00
  */
  export class RegisterService {
    constructor ($q, localStorageService, $http, $log, $state) {
@@ -24,14 +24,14 @@
      let userObject = { credentials: { username: username, password: password }, profile: { email: email } }
      let optionalInfo = { firstName: firstName, lastName: lastName, phone: phoneNumber }
 
-     this.$http({
+     return this.$http({
        method: 'POST',
        url: 'http://localhost:8888/user/users',
        params: optionalInfo,
        data: userObject
      }).then((response) => {
        if (response.data.username !== undefined) {
-         this.localStorageService.set('currentUser', username)
+         this.localStorageService.set('currentUser', response.data)
          this.localStorageService.set('password', password)
        }
 
