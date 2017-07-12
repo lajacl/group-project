@@ -3,55 +3,75 @@
 
   <div class="card text-center">
     <div>
-      <h3 class="card-header">{{profile.user.username}}'s Profile</h3>
+      <h3 class="card-header">{{profile.username}}'s Profile</h3>
     </div>
     <div class="card-block">
-      <p class="card-title">Name: {{profile.user.profile.firstName}} {{profile.user.profile.lastName}}</p>
-      <p class="card-text">Email: {{profile.user.profile.email}}</p>
-      <p class="card-text">Phone Number: {{profile.user.profile.phone}}</p>
-      <a class="btn btn-primary" ui-sref="feed" ui-sref-active="active">View Tweets</a>
+      <p class="card-title">Name: {{profile.fName}} {{profile.lName}}</p>
+      <p class="card-text">Email: {{profile.email}}</p>
+      <p class="card-text">Phone Number: {{profile.phone}}</p>
+      <button class="btn btn-primary" ui-sref="feed({username: profile.user.username})"
+        ui-sref-active="active">View Tweets</button>
+      <button class="btn btn-primary" href ng-click="profile.followUser()"
+        ui-sref-active="active" ng-hide="profile.isCurrentUser">{{profile.follow_btn_text}}</button>
     </div>
     <div class="card-footer text-muted">
-      Joined On: {{profile.user.joined | date: 'MMM dd, yyyy'}}
-      <div class="card-block">
-        <a class="card-link"  href ng-click="modifyProfile()">Edit Profile</a> |
-        <a class="card-link"  ui-sref="users" ui-sref-active="active">Find More Users</a>
+      Joined On: {{profile.user.joined | date: 'MMMM dd, yyyy'}}
+      <div class="card-block" ng-show="profile.isCurrentUser">
+        <a class="card-link" href  ng-click="update=false"
+          ui-sref-active="active">Edit Profile</a> |
+        <a class="card-link" href ng-click="profile.deleteUser()"
+          ui-sref-active="active">Delete Profile</a>
       </div>
+      <div ng-hide="profile.isCurrentUser"><a href ui-sref="users"
+        ui-sref-active="active">Find More Tweeters</a>
+      </div>
+        <div>{{errorMessage}}</div>
     </div>
   </div>
 
-  <form class="ng-hide">
+  <form class="ng-hide=update" class="updateForm" ng-init="update=true">
       <div class="input-group">
         <span class="input-group-addon" id="sizing-addon1">Email: </span>
-        <input ng-model="profile.email" type="email" class="form-control" placeholder="checkme@gmail.com" aria-describedby="sizing-addon1" ng-model="register.email">
+        <input ng-model="profile.email" type="email" class="form-control"
+          placeholder="checkme@gmail.com" aria-describedby="sizing-addon1"
+            ng-model="register.email">
         <span class="input-group-addon" id="sizing-addon2">Password: </span>
-        <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon6" ng-model="register.password">
+        <input type="password" class="form-control" placeholder="Password"
+          aria-describedby="sizing-addon6" ng-model="register.password">
       </div>
       <div class="input-group">
         <span class="input-group-addon" id="sizing-addon3">First Name: </span>
-        <input type="text" class="form-control" placeholder="Bob" aria-describedby="sizing-addon3" ng-model="register.firstName">
+        <input type="text" class="form-control" placeholder="Bob"
+          aria-describedby="sizing-addon3" ng-model="register.firstName">
         <span class="input-group-addon" id="sizing-addon3">Last Name: </span>
-        <input type="text" class="form-control" placeholder="Builder" aria-describedby="sizing-addon3" ng-model="register.lastName">
+        <input type="text" class="form-control" placeholder="Builder"
+          aria-describedby="sizing-addon3" ng-model="register.lastName">
         <span class="input-group-addon" id="sizing-addon3">Phone Number: </span>
-        <input type="text" class="form-control" placeholder="(123) 456-7890" aria-describedby="sizing-addon3" ng-model="register.phoneNumber">
+        <input type="text" class="form-control" placeholder="(123) 456-7890"
+          aria-describedby="sizing-addon3" ng-model="register.phoneNumber">
       </div>
-      <div>{{profile.updateError()}}</div>
-      <div><span class="btn btn-primary" ng-click="profile.update()">Update Profile</span></div>
-
+      <div><span class="btn btn-primary" ng-click="profile.updateUser()">Update Profile</span></div>
+    <div>{{profile.updateError()}}</div>
   </form>
 
     <div class="card">
     <div class="card-block">
         <p>Following ({{profile.following.length}}):</p>
-      <button type="button" class="btn btn-info" ng-repeat="username in profile.following" ui-sref="profile({ username: username })" ui-sref-active="active">{{username}}</button>
+      <button type="button" class="btn btn-info" ng-repeat="following in profile.following"
+      ui-sref="profile({username: following.username})" ui-sref-active="active">{{following.username}}
+      </button>
     </div>
     </div>
 
     <div class="card">
     <div class="card-block">
       <p>Followers ({{profile.followers.length}}):</p>
-      <button type="button" class="btn btn-info" ng-repeat="username in profile.followers" ui-sref="profile({ username: username })" ui-sref-active="active">{{username}}</button>
+      <button type="button" class="btn btn-info" ng-repeat="followers in profile.followers"
+      ui-sref="profile({username: followers.username})" ui-sref-active="active">{{followers.username}}
+      </button>
     </div>
     </div>
+
+
 </div>
 </div>
