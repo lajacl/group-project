@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: app.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T11:27:54-05:00
+ * @Last modified time: 2017-07-12T15:23:13-05:00
  */
 
 import 'app/app.styles'
@@ -19,7 +19,7 @@ const controller = class TwtrAppController {
   }
 
   loggingOut () {
-    this.loginService.logout().then(this.$state.reload('feed'))
+    this.loginService.logout().then(this.$state.reload('feed', { username: ''}, { reload: true }))
   }
 }
 

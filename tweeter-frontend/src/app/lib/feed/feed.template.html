@@ -1,19 +1,16 @@
-<twtr-feed-header></twtr-feed-header>
 <twtr-feed-login ng-if="!feed.hasCurrentUser()"></twtr-feed-login>
 <twtr-feed-tweets ng-if="feed.hasCurrentUser()"></twtr-feed-tweets>
 
+<twtr-feed-header></twtr-feed-header>
 <div class="container">
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-info" ng-repeat="tweet in feed.tweets track by $index">
-          <div class="panel-header">
-            <h3 class="panel-title">Date: {{tweet.posted | date : 'fullDate'}}</h3>
-          </div>
-
-          <div class="panel-body">{{tweet.content}}</div>
-
-          <div class="panel-footer">Author: {{tweet.author.username}}</div>
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="tweet in feed.tweets" ui-sref="tweet({ tweetId: tweet.id })" ui-sref-active="active">
+              {{tweet.id}}: {{tweet.author.username}} ({{tweet.posted | date: 'fullDate'}})
+            </a>
+        </div>
         </div>
       </div>
     </div>
