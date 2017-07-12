@@ -8,6 +8,16 @@
       <li class="list-group-item">Posted: {{tweet.posted}}</li>
     </ul>
 
+    <a ng-if="tweet.visibleToOwner()" class="btn btn-primary">Edit</a>
+    <a ng-if="tweet.visibleToOtherUsers()" class="btn btn-primary" ng-click="tweet.like()">Like</a>
+    <a ng-if="tweet.visibleToOtherUsers()" class="btn btn-primary">Reply</a>
+    <a ng-if="tweet.visibleToOtherUsers()" class="btn btn-primary">Repost</a>
+
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Likes</a>
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Mentions</a>
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Replies</a>
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Reposts</a>
+
     <a class="btn btn-primary" ui-sref="tweets" ui-sref-active="active">Tweets</a>
   </div>
 </div>

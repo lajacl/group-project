@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.config.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T11:28:03-05:00
+ * @Last modified time: 2017-07-12T06:41:32-05:00
  */
 
 export const config =
@@ -16,20 +16,14 @@ export const config =
       component: 'twtrTweet',
       resolve: {
         twt: function ($transition$, tweetsService) {
-          // console.log(`twt-resolve: ${$transition$.params().tweetId}`)
           return tweetsService
                   .getTweet(Number($transition$.params().tweetId))
-                  // .then(
-                  //   function successCB (response) {
-                  //     console.log(`response length: ${response.data.length}`)
-                  //     console.log(`success: ${response.data[0].author.username}`)
-                  //     return response.data[0]
-                  //   },
-                  //   function errorCB (response) {
-                  //     console.log(`failure: ${response.status}`)
-                  //     return undefined
-                  //   }
-                  // )
+        },
+        username: function ($transition$, localStorageService) {
+          return localStorageService.get('currentUser').username
+        },
+        password: function ($transition$, localStorageService) {
+          return localStorageService.get('password')
         }
       }
     })
