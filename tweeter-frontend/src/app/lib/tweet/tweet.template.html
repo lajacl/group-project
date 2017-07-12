@@ -40,7 +40,7 @@
     <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleReplies()">Replies</a>
     <div ng-show="tweet._showReplies" class="list-group">
       <h4>Replies</h4>
-      <a class="list-group-item" ng-repeat="twt in tweet._replies">
+      <a class="list-group-item" ng-repeat="twt in tweet._replies" ui-sref="tweet({ tweetId: twt.id })" ui-sref-active="active">
         ({{twt.id}}) {{twt.author.username}}: {{twt.content}}
       </a>
     </div>
@@ -48,7 +48,8 @@
     <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleReposts()">Reposts</a>
     <div ng-show="tweet._showReposts" class="list-group">
       <h4>Reposts</h4>
-      <a class="list-group-item" ng-repeat="twt in tweet._reposts">
+      <a class="list-group-item" ng-repeat="twt in tweet._reposts"
+      ui-sref="tweet({ tweetId: twt.id })" ui-sref-active="active">
         ({{twt.id}}) {{twt.author.username}}
       </a>
     </div>
