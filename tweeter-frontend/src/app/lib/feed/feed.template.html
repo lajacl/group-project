@@ -1,16 +1,6 @@
-<div class="row">
-  <div class="page-header">
-    <h1>{{feed.usersName}} Page</h1>
-  </div>
-</div>
-
-<div class="row">
-  <twtr-login></twtr-login>
-</div>
-
-<div class="row">
-  <twtr-post></twtr-post>
-</div>
+<twtr-feed-header></twtr-feed-header>
+<twtr-feed-login ng-if="!loginService.isAuthenticated()"></twtr-feed-login>
+<twtr-feed-tweets></twtr-feed-tweets>
 
 <div class="container">
   <div class="jumbotron">

@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: post.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T18:13:57-05:00
+ * @Last modified time: 2017-07-11T21:06:47-05:00
  */
 
 import 'post/post.styles'
@@ -24,9 +24,7 @@ const controller =
 
     post () {
       this.postService.post(this.username, this.password, this.content)
-      this.state.go('post',
-                    { username: this.username, password: this.password },
-                    { reload: true })
+      this.state.reload('feed')
     }
   }
 
