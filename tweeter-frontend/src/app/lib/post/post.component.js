@@ -3,8 +3,8 @@
  * @Date:   2017-07-11T12:37:53-05:00
  * @Email:  crschmit@gmail.com
  * @Filename: post.component.js
- * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T14:46:00-05:00
+ * @Last modified by:   Anthony Perry
+ * @Last modified time: 2017-07-11T21:20:15-05:00
  */
 
 import 'post/post.styles'
@@ -24,14 +24,16 @@ const controller =
     post () {
       this.postService.post(this.username, this.password, this.content)
       this.state.go('post',
-                    { username: this.username, password: this.password },
-                    { reload: true })
+          { username: this.username, password: this.password },
+          { reload: true })
     }
   }
 
 export const twtrPost = {
   controller,
   templateUrl,
-  bindings: { username: '<', password: '<' },
-  controllerAs: 'post'
+  controllerAs: 'post',
+  bindings: {
+    content: '<'
+  }
 }

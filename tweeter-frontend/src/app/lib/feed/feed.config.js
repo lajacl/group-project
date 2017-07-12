@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T12:51:15-05:00
+ * @Last modified time: 2017-07-11T21:00:48-05:00
  */
  export const config =
    ($stateProvider) => {

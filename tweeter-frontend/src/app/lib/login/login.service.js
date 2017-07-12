@@ -4,17 +4,15 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T13:23:18-05:00
+ * @Last modified time: 2017-07-11T18:48:09-05:00
  */
 
 export class LoginService {
-  constructor ($q, localStorageService, $http, $log, $state) {
+  constructor (localStorageService, $http, $log) {
     'ngInject'
-    this.$q = $q
     this.localStorageService = localStorageService
     this.$http = $http
     this.$log = $log
-    this.$state = $state
   }
 
   /**
