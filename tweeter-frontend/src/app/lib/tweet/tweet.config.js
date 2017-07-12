@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.config.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T06:41:32-05:00
+ * @Last modified time: 2017-07-12T11:51:08-05:00
  */
 
 export const config =
@@ -20,7 +20,8 @@ export const config =
                   .getTweet(Number($transition$.params().tweetId))
         },
         username: function ($transition$, localStorageService) {
-          return localStorageService.get('currentUser').username
+          let cu = localStorageService.get('currentUser')
+          return (cu != null) ? cu.username : undefined
         },
         password: function ($transition$, localStorageService) {
           return localStorageService.get('password')
