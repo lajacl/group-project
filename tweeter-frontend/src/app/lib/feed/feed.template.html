@@ -8,10 +8,10 @@
         <div class="row">
           <div class="well panel panel-info col-xs-12" ng-repeat="tweet in feed.tweets">
               <div class="panel-header">
-                <h3 class="panel-title btn" ui-sref="profile({ username: tweet.author.username })" ui-sref-active="active">{{tweet.author.username}}</h3>
+                <h3 class="panel-title btn btn-default" ui-sref="profile({ username: tweet.author.username })" ui-sref-active="active">{{tweet.author.username}}</h3>
               </div>
             <div class="row panel-body">
-              <div class="clearfix well btn col-xs-12" ui-sref="tweet({ tweetId: tweet.id })" ui-sref-active="active">
+              <div class="clearfix well btn btn-default col-xs-12" ui-sref="tweet({ tweetId: tweet.id })" ui-sref-active="active">
                 {{tweet.content | limitTo : 70}}... Click to read more <br>
               </div>
             </div>
