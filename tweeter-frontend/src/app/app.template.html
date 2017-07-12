@@ -7,6 +7,9 @@
       <li><a ui-sref="users" ui-sref-active="active">Users</a></li>
       <li><a ui-sref="tweets" ui-sref-active="active">Tweets</a></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a class="btn" ui-sref-active="active" ng-click="app.loggingOut()">Logout</a></li>
+    </ul>
   </div>
 </nav>
 <ui-view></ui-view>

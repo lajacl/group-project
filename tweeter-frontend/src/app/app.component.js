@@ -4,16 +4,22 @@
  * @Email:  crschmit@gmail.com
  * @Filename: app.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T11:01:21-05:00
+ * @Last modified time: 2017-07-12T11:09:36-05:00
  */
 
 import 'app/app.styles'
 import templateUrl from 'app/app.template'
 
 const controller = class TwtrAppController {
-  constructor ($log) {
+  constructor ($log, loginService, $state) {
     'ngInject'
+    this.loginService = loginService
+    this.$state = $state
     $log.debug('twtr-app ...')
+  }
+
+  loggingOut () {
+    this.loginService.logout().then(this.$state.reload('feed'))
   }
 }
 

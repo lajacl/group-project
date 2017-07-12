@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T10:19:17-05:00
+ * @Last modified time: 2017-07-12T10:55:20-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -15,6 +15,7 @@
        component: 'twtrFeed',
        resolve: {
          tweets: (feedService, $transition$) => {
+           feedService.setUsername($transition$.params().username)
            return feedService.displayTweets($transition$.params().username)
          }
        }

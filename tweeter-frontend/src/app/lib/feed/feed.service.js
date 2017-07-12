@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T10:43:04-05:00
+ * @Last modified time: 2017-07-12T11:15:48-05:00
  */
  export class FeedService {
    constructor (localStorageService, $http, $log) {
@@ -12,28 +12,38 @@
      this.localStorageService = localStorageService
      this.$http = $http
      this.$log = $log
+     this.user = ''
+   }
+
+   setUsername (anotherUser) {
+     this.user = 'Feed'
+
+     if (anotherUser !== '' || anotherUser.length !== 0) {
+       this.user = anotherUser
+     } else if (this.localStorageService.get('currentUser') !== null) {
+       this.user = this.localStorageService.get('currentUser').username
+     }
    }
 
    username () {
-     let user = this.localStorageService.get('currentUser')
-     return user !== null ? user.username : 'Feed'
+     return this.user
    }
 
    displayTweets (anotherUser) {
      this.$log.log(`User:${anotherUser} Empty:${anotherUser.length === 0} Null:${anotherUser === null} Undefined:${anotherUser === undefined}`)
-     let user = {username: ''}
+     let currentUser = {username: ''}
 
      if (anotherUser !== '' || anotherUser.length !== 0) {
-       user = { username: anotherUser }
+       currentUser = { username: anotherUser }
      } else if (this.localStorageService.get('currentUser') !== null) {
-       user = this.localStorageService.get('currentUser')
+       currentUser = this.localStorageService.get('currentUser')
      }
 
-     this.$log.log(user)
-     if (user !== undefined || user !== null) {
+     this.$log.log(currentUser)
+     if (currentUser !== undefined || currentUser !== null && this.user !== 'Feed') {
        return this.$http({
          method: 'GET',
-         url: 'http://localhost:8888/user/users/@' + user.username + '/feed'
+         url: 'http://localhost:8888/user/users/@' + currentUser.username + '/feed'
        }).then((response) => {
          if (response.data !== undefined) {
            return response.data
