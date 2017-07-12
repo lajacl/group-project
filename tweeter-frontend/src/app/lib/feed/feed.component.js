@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T21:04:00-05:00
+ * @Last modified time: 2017-07-11T22:08:17-05:00
  */
  import 'feed/feed.styles'
  import templateUrl from 'feed/feed.template'
@@ -19,6 +19,9 @@
        $log.debug('twtr-feed ...')
      }
 
+     hasCurrentUser () {
+       return this.loginService.isAuthenticated()
+     }
 
    }
 

@@ -1,6 +1,6 @@
 <twtr-feed-header></twtr-feed-header>
-<twtr-feed-login ng-if="!loginService.isAuthenticated()"></twtr-feed-login>
-<twtr-feed-tweets></twtr-feed-tweets>
+<twtr-feed-login ng-if="!feed.hasCurrentUser()"></twtr-feed-login>
+<twtr-feed-tweets ng-if="feed.hasCurrentUser()"></twtr-feed-tweets>
 
 <div class="container">
   <div class="jumbotron">

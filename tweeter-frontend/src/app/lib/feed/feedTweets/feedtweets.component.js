@@ -4,18 +4,19 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feedtweets.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T21:33:15-05:00
+ * @Last modified time: 2017-07-11T21:40:44-05:00
  */
  import 'feed/feed.styles'
  import templateUrl from 'feed/feedTweets/feedtweets.template'
 
  const controller =
    class TwtrFeedTweetsController {
-     constructor ($log, feedService, $state, postService, localStorageService) {
+     constructor ($log, feedService, $state, postService, localStorageService, loginService) {
        'ngInject'
        this.service = feedService
        this.postService = postService
        this.localStorageService = localStorageService
+       this.loginService = loginService
        this.$state = $state
        $log.debug('twtr-feedTweets ...')
      }
