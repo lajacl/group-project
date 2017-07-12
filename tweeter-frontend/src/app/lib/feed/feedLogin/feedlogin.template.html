@@ -1,20 +1,24 @@
 <ul class="nav nav-pills">
-  <li role="presentation" class="nav-item">
-    <a class="nav-link"
-      ng-click="feedLogin.clickToLogin()"
-      ui-sref-active="active"
-      >
-      Login
-    </a>
-  </li>
-  <li role="presentation" class="nav-item">
-    <a class="nav-link"
-      ng-click="feedLogin.clickToRegister()"
-      ui-sref-active="active"
-      >
-      Register
-    </a>
-  </li>
+  <div class="container">
+    <div class="row">
+      <li role="presentation" class="nav-item col-xs-2 col-md-offset-4">
+          <a class="btn"
+            ng-click="feedLogin.clickToLogin()"
+            ui-sref-active="active"
+            >
+            Login
+          </a>
+      </li>
+      <li role="presentation" class="nav-item col-xs-5 col-md-offset-1">
+          <a class="btn"
+            ng-click="feedLogin.clickToRegister()"
+            ui-sref-active="active"
+            >
+            Register
+          </a>
+      </li>
+    </div>
+  </div>
 </ul>
 <div class="row">
   <twtr-login ng-if="!feedLogin.clickedToRegister()"></twtr-login>
