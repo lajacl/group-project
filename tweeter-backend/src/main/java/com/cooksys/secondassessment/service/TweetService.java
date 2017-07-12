@@ -108,7 +108,7 @@ public class TweetService {
 		if (tRepo.exists(id)) {
 			Tweet tweet = getById(id);
 			tweet.setIsDeleted(true);
-			return tweet;
+			return tRepo.save(tweet);
 		}
 		
 		throw new EntityNotFoundException();
