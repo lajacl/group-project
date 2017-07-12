@@ -1,3 +1,11 @@
-<div class="row">
-  <twtr-post></twtr-post>
+<div class="container" ng-if="!loginService.successfulLogin()">
+  <div class="jumbotron">
+    <h3>Tweet what's on your mind</h3>
+    <div class="input-group">
+      <input type="text" class="form-control" aria-describedby="sizing-addon3" placeholder="How's your day going?" ng-model="feedTweets.content">
+      <span class="input-group-btn">
+        <a class="btn btn-primary" ng-click="feedTweets.post()">Post</a>
+      </span>
+    </div>
+  </div>
 </div>
