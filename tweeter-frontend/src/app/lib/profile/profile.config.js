@@ -12,7 +12,7 @@ export const config =
     'ngInject'
     $stateProvider.state({
       name: 'profile',
-      url: '/users/{username}/profile',
+      url: '/profile/{username}',
       component: 'twtrProfile',
       resolve: {
         user: function (profileService, $transition$) {

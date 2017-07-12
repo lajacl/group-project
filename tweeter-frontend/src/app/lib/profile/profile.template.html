@@ -9,50 +9,44 @@
       <p class="card-title">Name: {{profile.fName}} {{profile.lName}}</p>
       <p class="card-text">Email: {{profile.email}}</p>
       <p class="card-text">Phone Number: {{profile.phone}}</p>
-      <button class="btn btn-primary" ui-sref="feed({username: profile.user.username})"
+      <button class="btn btn-primary" ui-sref="feed({username: profile.user.username})"//$state.go{username: profile.user.username}
         ui-sref-active="active">View Tweets</button>
       <button class="btn btn-primary" href ng-click="profile.followUser()"
         ui-sref-active="active" ng-hide="profile.isCurrentUser">{{profile.follow_btn_text}}</button>
     </div>
     <div class="card-footer text-muted">
       Joined On: {{profile.user.joined | date: 'MMMM dd, yyyy'}}
-      <div class="card-block" ng-show="profile.isCurrentUser">
-        <a class="card-link" href  ng-click="update=false"
+      <div><a href ui-sref="users" ui-sref-active="active">Find More Tweeters</a></div>
+      <div class="card-block"  class="ng-hide" ng-show="profile.isCurrentUser">
+        <a class="card-link" href  ng-click="profile.updateForm()"
           ui-sref-active="active">Edit Profile</a> |
         <a class="card-link" href ng-click="profile.deleteUser()"
           ui-sref-active="active">Delete Profile</a>
       </div>
-      <div ng-hide="profile.isCurrentUser"><a href ui-sref="users"
-        ui-sref-active="active">Find More Tweeters</a>
-      </div>
-        <div>{{errorMessage}}</div>
+
+        <div>{{profile.errorMessage}}</div>
     </div>
   </div>
 
-  <form class="ng-hide=update" class="updateForm" ng-init="update=true">
-      <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon1">Email: </span>
-        <input ng-model="profile.email" type="email" class="form-control"
-          placeholder="checkme@gmail.com" aria-describedby="sizing-addon1"
-            ng-model="register.email">
-        <span class="input-group-addon" id="sizing-addon2">Password: </span>
-        <input type="password" class="form-control" placeholder="Password"
-          aria-describedby="sizing-addon6" ng-model="register.password">
-      </div>
+
+  <div class="card-block">
+  <form class="ng-hide" ng-show="profile.formOpen">
       <div class="input-group">
         <span class="input-group-addon" id="sizing-addon3">First Name: </span>
-        <input type="text" class="form-control" placeholder="Bob"
-          aria-describedby="sizing-addon3" ng-model="register.firstName">
+        <input ng-model="profile.fName" type="text" class="form-control" placeholder="Bob">
         <span class="input-group-addon" id="sizing-addon3">Last Name: </span>
-        <input type="text" class="form-control" placeholder="Builder"
-          aria-describedby="sizing-addon3" ng-model="register.lastName">
+        <input ng-model="profile.lName" type="text" class="form-control" placeholder="Builder">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon1">Email: </span>
+        <input ng-model="profile.email" type="email" class="form-control" placeholder="checkme@gmail.com">
         <span class="input-group-addon" id="sizing-addon3">Phone Number: </span>
-        <input type="text" class="form-control" placeholder="(123) 456-7890"
-          aria-describedby="sizing-addon3" ng-model="register.phoneNumber">
+        <input ng-model="profile.phone" type="text" class="form-control" placeholder="(123) 456-7890">
       </div>
       <div><span class="btn btn-primary" ng-click="profile.updateUser()">Update Profile</span></div>
     <div>{{profile.updateError()}}</div>
   </form>
+  </div>
 
     <div class="card">
     <div class="card-block">

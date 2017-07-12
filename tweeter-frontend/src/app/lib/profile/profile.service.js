@@ -31,7 +31,7 @@ export class ProfileService {
     }
   }
 
-  // Provides the text of the follow / unfollow btn based on current user
+  // Provides the text of the follow or unfollow btn based on current user
   updateFollowBtn (un) {
     // this.$log.log('Logged On: ' + this.isLoggedOn())
     // if (this.isLoggedOn()) {
@@ -152,21 +152,23 @@ export class ProfileService {
     }
 
     // Update / Patch a user
-    updateUser (profile) {
+    updateUser (firstName, lastName, phone) {
       let currentUsername = this.localStorageService.get('currentUser').username
       let curentUserPass = this.localStorageService.get('password')
       let method = 'PATCH'
       let apiUrl = 'http://localhost:8888/user/users/@' + currentUsername
-      let requestBody = { credentials: { username: currentUsername, password: curentUserPass }, profile }
+      let params = { firstName: firstName, lastName: lastName, phone: phone } + { username: currentUsername }
+      let requestBody = { credentials: { username: currentUsername, password: curentUserPass } }
 
       this.$http({
         method: method,
         url: apiUrl,
+        params: params,
         data: requestBody
       }).then((response) => {
-        this.$log.log(`User deleted: ` + currentUsername + `, Status: ${response.status}`)
+        this.$log.log(`User profile updated: ` + currentUsername + `, Status: ${response.status}`)
       }, (response) => {
-        this.$log.log(`Unable to delete user: ` + currentUsername + `, Status: ${response.status}`)
+        this.$log.log(`Unable to update user profile: ` + currentUsername + `, Status: ${response.status}`)
       })
     }
 
@@ -204,6 +206,7 @@ export class ProfileService {
         data: requestBody
       }).then((response) => {
         this.$log.log(`User deleted: ` + currentUsername + `, Status: ${response.status}`)
+        this.localStorageService.clearAll()
       }, (response) => {
         this.$log.log(`Unable to delete user: ` + currentUsername + `, Status: ${response.status}`)
       })

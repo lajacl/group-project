@@ -43,6 +43,22 @@ const controller =
       return this.user.profile.phone
     }
 
+    set fName (fName) {
+      this.user.profile.firstName = fName
+    }
+
+    set lName (lName) {
+      this.user.profile.lastName = lName
+    }
+
+    set email (address) {
+      this.user.profile.email = address
+    }
+
+    set phone (number) {
+      this.user.profile.phone = number
+    }
+
     get isCurrentUser () {
       return this.service.isCurrentUser(this.username)
     }
@@ -57,7 +73,7 @@ const controller =
 
     followUser () {
       if (this.service.isLoggedOn()) {
-        this.service.followUser(this.username)
+        this.service.followUser(this.username).then(this.$state.reload('profile'))
       } else {
         this.service.errorMessage = 'You Must Log In To Follow This User: ' + this.username
         this.$log.log('Not Logged In To Follow This User: ' + this.username)
@@ -78,12 +94,27 @@ const controller =
     }
 
     deleteUser () {
-      this.service.deleteUser()
+      this.service.deleteUser().then(this.$state.go('login'))
     }
 
-      get errorMessage () {
-        return this.service.errorMessage()
+    get errorMessage () {
+      return this.service.errorMessage
+    }
+
+    formOpen = false
+
+    // shows or hides profile update form
+    updateForm () {
+      if (this.formOpen === false) {
+        this.formOpen = true
+      } else {
+        this.formOpen = false
       }
+    }
+
+    updateUser () {
+      this.service.updateUser(this.firstName, this.lastName, this.phone)
+    }
 
   }
 
