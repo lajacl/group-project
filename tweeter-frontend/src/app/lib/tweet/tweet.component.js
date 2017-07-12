@@ -21,7 +21,13 @@ class TwtrTweetController {
     this.password = undefined
     this._showReplyEditor = false
     this._showLikes = false
+    this._showMentions = false
+    this._showReplies = false
+    this._showReposts = false
     this._likes = []
+    this._mentions = []
+    this._replies = []
+    this._reposts = []
     this.log = $log
     $log.log('twtr-tweet is good')
   }
@@ -97,6 +103,21 @@ class TwtrTweetController {
     // console.log(this._likes)
   }
 
+  toggleMentions () {
+    this._showMentions = !this._showMentions
+    if(this._showMentions) this.mentions()
+  }
+
+  toggleReplies () {
+    this._showReplies = !this._showReplies
+    if(this._showReplies) this.replies()
+  }
+
+  toggleReposts () {
+    this._showReposts = !this._showReposts
+    if(this._showReposts) this.reposts()
+  }
+
   // API methods
   like () {
     return this.svc.like(this.user, this.id)
@@ -121,10 +142,27 @@ class TwtrTweetController {
   }
 
   likes () {
-    // console.log('hello')
     this.svc.likes(this.id).then(
       res => this._likes = res.data,
       res => console.error('TwtrTweetController.likes'))
+  }
+
+  mentions () {
+    this.svc.mentions(this.id).then(
+      res => this._mentions = res.data,
+      res => console.error('TwtrTweetController.mentions'))
+  }
+
+  replies () {
+    this.svc.replies(this.id).then(
+      res => this._replies = res.data,
+      res => console.error('TwtrTweetController.replies'))
+  }
+
+  reposts () {
+    this.svc.reposts(this.id).then(
+      res => this._reposts = res.data,
+      res => console.error('TwtrTweetController.reposts'))
   }
 }
 

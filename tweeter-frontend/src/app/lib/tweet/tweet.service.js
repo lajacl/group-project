@@ -42,4 +42,25 @@ export class TweetService {
       // .then(res => res.data,
       //       res => this.log.error(res.status))
   }
+
+  mentions (tid) {
+    // console.log(`tweetService.likes(${tid})`)
+    return this.http.get(`http://localhost:8888/tweet/tweets/${tid}/mentions`)
+      // .then(res => res.data,
+      //       res => this.log.error(res.status))
+  }
+
+  replies (tid) {
+    // console.log(`tweetService.likes(${tid})`)
+    return this.http.get(`http://localhost:8888/tweet/tweets/${tid}/replies`)
+      // .then(res => res.data,
+      //       res => this.log.error(res.status))
+  }
+
+  reposts (tid) {
+    // console.log(`tweetService.likes(${tid})`)
+    return this.http.get(`http://localhost:8888/tweet/tweets/${tid}/reposts`)
+      // .then(res => res.data,
+      //       res => this.log.error(res.status))
+  }
 }

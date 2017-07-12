@@ -29,9 +29,29 @@
       </a>
     </div>
 
-    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Mentions</a>
-    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Replies</a>
-    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Reposts</a>
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleMentions()">Mentions</a>
+    <div ng-show="tweet._showMentions" class="list-group">
+      <h4>Mentions</h4>
+      <a class="list-group-item" ng-repeat="usr in tweet._mentions">
+        {{usr.username}}
+      </a>
+    </div>
+
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleReplies()">Replies</a>
+    <div ng-show="tweet._showReplies" class="list-group">
+      <h4>Replies</h4>
+      <a class="list-group-item" ng-repeat="twt in tweet._replies">
+        ({{twt.id}}) {{twt.author.username}}: {{twt.content}}
+      </a>
+    </div>
+
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleReposts()">Reposts</a>
+    <div ng-show="tweet._showReposts" class="list-group">
+      <h4>Reposts</h4>
+      <a class="list-group-item" ng-repeat="twt in tweet._reposts">
+        ({{twt.id}}) {{twt.author.username}}
+      </a>
+    </div>
 
     <a class="btn btn-primary" ui-sref="tweets" ui-sref-active="active">Tweets</a>
   </div>
