@@ -21,13 +21,13 @@ const controller =
       this.localStorageService = localStorageService
     }
 
-    get following () {
-      return ['shagginwaggon', 'daphyduckface', 'readyfreddie', 'msdinkley']
-    }
-
-    get followers () {
-      return ['shagginwaggon']
-    }
+    // getUserFollowing () {
+    //   return this.service.getUserFollowing(this.user.username)
+    // }
+    //
+    // getUserFollowers () {
+    //   return this.service.getUserFollowing(this.user.username)
+    // }
 
   }
 
@@ -35,5 +35,7 @@ export const twtrProfile = {
   controller,
   templateUrl,
   controllerAs: 'profile',
-  bindings: { user: '=' }
+  bindings: { user: '=',
+    following: '=',
+    followers: '=' }
 }

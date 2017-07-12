@@ -20,37 +20,56 @@ export class ProfileService {
   getUser (username) {
     let method = 'GET'
     let apiUrl = 'http://localhost:8888/user/users/@' + username
-    // let params = {username: username}
-    // let requestBody
 
     return this.$http({
       method: method,
       url: apiUrl,
-      // params: params,
-      // data: requestBody
       headers: {
         'Access-Control-Allow-Origin': '*',
         'content-type': 'application/json'
       }
     }).then((response) => {
-      // if (response.data.username !== undefined) {
-      //   this.localStorageService.set('currentUser', username)
-      // }
-      this.$log.log(`Server Success ${response.data.username}  `)
       return response.data
     }, (response) => {
-      this.$log.log(`Error connecting to the server ${response.status}`)
+      this.$log.log(`User not found ${response.status}`)
     })
   }
 
-  get Following () {
+  getUserFollowing (username) {
     let method = 'GET'
-    let apiCall = 'http://localhost:8888/user/users/@{username}/followers'
+    let apiUrl = 'http://localhost:8888/user/users/@' + username + '/following'
+
+    return this.$http({
+      method: method,
+      url: apiUrl,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'content-type': 'application/json'
+      }
+    }).then((response) => {
+      this.$log.log(`Response Data: ${response.data}`)
+      return response.data
+    }, (response) => {
+      this.$log.log(`Users being followed not found ${response.status}`)
+    })
   }
 
-  get Followers () {
+    getUserFollowers (username) {
     let method = 'GET'
-    let apiCall = 'http://localhost:8888/user/users/@{username}/following'
+    let apiUrl = 'http://localhost:8888/user/users/@' + username + '/followers'
+
+    return this.$http({
+      method: method,
+      url: apiUrl,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'content-type': 'application/json'
+      }
+    }).then((response) => {
+      return response.data
+    }, (response) => {
+      this.$log.log(`Users following not found ${response.status}`)
+    })
   }
 
 }

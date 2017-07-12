@@ -17,6 +17,12 @@ export const config =
       resolve: {
         user: function (profileService, $transition$) {
           return profileService.getUser($transition$.params().username)
+        },
+        following: function (profileService, $transition$) {
+          return profileService.getUserFollowing($transition$.params().username)
+        },
+        followers: function (profileService, $transition$) {
+          return profileService.getUserFollowers($transition$.params().username)
         }
       }
     })

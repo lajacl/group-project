@@ -12,7 +12,7 @@
       <a class="btn btn-primary" ui-sref="feed" ui-sref-active="active">View Tweets</a>
     </div>
     <div class="card-footer text-muted">
-      Joined On: {{profile.user.joined | date: 'MMM dd, yyyy'}}
+      Joined On: {{profile.user.joined | date: 'MMMM dd, yyyy'}}
       <div class="card-block">
         <a class="card-link"  href ng-click="modifyProfile()">Edit Profile</a> |
         <a class="card-link"  ui-sref="users" ui-sref-active="active">Find More Users</a>
@@ -43,14 +43,14 @@
     <div class="card">
     <div class="card-block">
         <p>Following ({{profile.following.length}}):</p>
-      <button type="button" class="btn btn-info" ng-repeat="username in profile.following" ui-sref="profile({ username: username })" ui-sref-active="active">{{username}}</button>
+      <button type="button" class="btn btn-info" ng-repeat="following in profile.following" ui-sref="profile({ username: following.username })" ui-sref-active="active">{{following.username}}</button>
     </div>
     </div>
 
     <div class="card">
     <div class="card-block">
       <p>Followers ({{profile.followers.length}}):</p>
-      <button type="button" class="btn btn-info" ng-repeat="username in profile.followers" ui-sref="profile({ username: username })" ui-sref-active="active">{{username}}</button>
+      <button type="button" class="btn btn-info" ng-repeat="followers in profile.followers" ui-sref="profile({ username: followers.username })" ui-sref-active="active">{{followers.username}}</button>
     </div>
     </div>
 </div>
