@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.component.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T10:54:48-05:00
+ * @Last modified time: 2017-07-12T11:59:56-05:00
  */
 
 import 'tweet/tweet.styles'
@@ -119,6 +119,11 @@ class TwtrTweetController {
   }
 
   // API methods
+  delete () {
+    this.svc.delete(this.id)
+    this.state.go('feed', { username: '' })
+  }
+
   like () {
     return this.svc.like(this.user, this.id)
   }

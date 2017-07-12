@@ -8,7 +8,7 @@
       <li class="list-group-item">Posted: {{tweet.posted}}</li>
     </ul>
 
-    <a ng-if="tweet.visibleToOwner()" class="btn btn-primary">Edit</a>
+    <a ng-if="tweet.visibleToOwner()" class="btn btn-primary" ng-click="tweet.delete()">Delete</a>
     <a ng-if="tweet.visibleToOtherUsers()" class="btn btn-primary" ng-click="tweet.like()">Like</a>
     <a ng-if="tweet.visibleToOtherUsers()" class="btn btn-primary" ng-click="tweet.toggleReplyEditor()">Reply</a>
     <div class="t-editor" ng-show="tweet.showReplyEditor">
@@ -54,6 +54,6 @@
       </a>
     </div>
 
-    <a class="btn btn-primary" ui-sref="tweets" ui-sref-active="active">Tweets</a>
+    <a class="btn btn-primary" ui-sref="feed({ username: '' })" ui-sref-active="active">Tweets</a>
   </div>
 </div>
