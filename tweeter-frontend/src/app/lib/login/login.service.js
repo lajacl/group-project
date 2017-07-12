@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T11:10:31-05:00
+ * @Last modified time: 2017-07-12T11:21:38-05:00
  */
 
 export class LoginService {
@@ -57,7 +57,7 @@ export class LoginService {
       if (this.localStorageService.get('currentUser') === null) {
         resolve(true)
       } else {
-        resolve(false)
+        reject(false)
       }
     })
   }
