@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.service.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T10:47:15-05:00
+ * @Last modified time: 2017-07-12T11:44:42-05:00
  */
 
 export class TweetService {
@@ -12,6 +12,12 @@ export class TweetService {
     'ngInject'
     this.log = $log
     this.http = $http
+  }
+
+  delete (tid) {
+    return this.http.delete(`http://localhost:8888/tweet/tweets/${tid}`)
+      .then(res => this.log.debug(res.status),
+            res => this.log.error(res.status))
   }
 
   like (user, tid) {
