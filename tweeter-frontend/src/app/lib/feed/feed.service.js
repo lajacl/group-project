@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T10:33:21-05:00
+ * @Last modified time: 2017-07-12T10:43:04-05:00
  */
  export class FeedService {
    constructor (localStorageService, $http, $log) {
@@ -22,6 +22,7 @@
    displayTweets (anotherUser) {
      this.$log.log(`User:${anotherUser} Empty:${anotherUser.length === 0} Null:${anotherUser === null} Undefined:${anotherUser === undefined}`)
      let user = {username: ''}
+
      if (anotherUser !== '' || anotherUser.length !== 0) {
        user = { username: anotherUser }
      } else if (this.localStorageService.get('currentUser') !== null) {
