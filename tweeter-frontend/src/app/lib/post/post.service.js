@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: post.service.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T14:23:17-05:00
+ * @Last modified time: 2017-07-12T07:50:52-05:00
  */
 
 export class PostService {

@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.component.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T07:24:39-05:00
+ * @Last modified time: 2017-07-12T08:13:43-05:00
  */
 
 import 'tweet/tweet.styles'
@@ -12,12 +12,14 @@ import templateUrl from 'tweet/tweet.template'
 
 const controller =
 class TwtrTweetController {
-  constructor ($log, tweetService) {
+  constructor ($log, $state, tweetService) {
     'ngInject'
     this.svc = tweetService
+    this.state = $state
     this.twt = undefined
     this.username = undefined
     this.password = undefined
+    this._showReplyEditor = false
     $log.log('twtr-tweet is good')
   }
 
@@ -77,8 +79,35 @@ class TwtrTweetController {
     return this.twt.posted
   }
 
+  get showReplyEditor () {
+    return this._showReplyEditor
+  }
+
+  toggleReplyEditor () {
+    this._showReplyEditor = !this._showReplyEditor
+  }
+
+  // API methods
   like () {
     return this.svc.like(this.user, this.id)
+  }
+
+  reply () {
+    this.svc.reply(this.user, this.replyContent, this.id)
+    this.state.go('tweet',
+                  { twt: this.tweet,
+                    username: this.user.username,
+                    password: this.user.password },
+                  { reload: true })
+  }
+
+  repost () {
+    this.svc.repost(this.user, this.id)
+    this.state.go('tweet',
+                  { twt: this.tweet,
+                    username: this.user.username,
+                    password: this.user.password },
+                  { reload: true })
   }
 }
 
