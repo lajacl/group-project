@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.service.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T08:11:49-05:00
+ * @Last modified time: 2017-07-12T10:47:15-05:00
  */
 
 export class TweetService {
@@ -34,5 +34,12 @@ export class TweetService {
       credentials: user
     }).then(res => this.log.debug(res.status),
             res => this.log.error(res.status))
+  }
+
+  likes (tid) {
+    // console.log(`tweetService.likes(${tid})`)
+    return this.http.get(`http://localhost:8888/tweet/tweets/${tid}/likes`)
+      // .then(res => res.data,
+      //       res => this.log.error(res.status))
   }
 }

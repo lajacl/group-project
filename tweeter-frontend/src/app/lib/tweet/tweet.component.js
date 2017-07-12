@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.component.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T08:13:43-05:00
+ * @Last modified time: 2017-07-12T10:54:48-05:00
  */
 
 import 'tweet/tweet.styles'
@@ -20,6 +20,9 @@ class TwtrTweetController {
     this.username = undefined
     this.password = undefined
     this._showReplyEditor = false
+    this._showLikes = false
+    this._likes = []
+    this.log = $log
     $log.log('twtr-tweet is good')
   }
 
@@ -87,6 +90,13 @@ class TwtrTweetController {
     this._showReplyEditor = !this._showReplyEditor
   }
 
+  toggleLikes () {
+    this._showLikes = !this._showLikes
+    // console.log(this._showLikes)
+    if(this._showLikes) this.likes()
+    // console.log(this._likes)
+  }
+
   // API methods
   like () {
     return this.svc.like(this.user, this.id)
@@ -108,6 +118,13 @@ class TwtrTweetController {
                     username: this.user.username,
                     password: this.user.password },
                   { reload: true })
+  }
+
+  likes () {
+    // console.log('hello')
+    this.svc.likes(this.id).then(
+      res => this._likes = res.data,
+      res => console.error('TwtrTweetController.likes'))
   }
 }
 
