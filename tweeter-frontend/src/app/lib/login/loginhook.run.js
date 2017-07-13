@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: loginhook.run.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-10T16:28:01-05:00
+ * @Last modified time: 2017-07-12T16:12:44-05:00
  */
 
  export const run =
@@ -19,7 +19,8 @@
        let loginService = transition.injector().get('loginService')
        let $state = transition.router.stateService
        if (!loginService.isAuthenticated()) {
-         return $state.target('login', undefined, { location: false })
+         alert('You must login first.')
+         return $state.target('feed', { username: '' }, { location: false })
        }
      }
 

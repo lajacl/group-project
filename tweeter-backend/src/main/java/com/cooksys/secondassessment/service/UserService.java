@@ -66,7 +66,7 @@ public class UserService {
 	}
 
 	
-	public TweetUser updateAUser(TweetUserCredOnlyDto user, String username, String firstName, String lastName, String phone) {
+	public TweetUser updateAUser(TweetUserCredOnlyDto user, String username, String firstName, String lastName, String phone, String email) {
 		TweetUser tweetUser = checkUserCredentials(user.getCredentials());
 		
 		if (tweetUser != null && tweetUser.getIsActive().equals(true) 
@@ -83,6 +83,10 @@ public class UserService {
 			
 			if (phone != null) {
 				tweetUser.getProfile().setPhone(phone);
+			}
+			
+			if (email != null) {
+				tweetUser.getProfile().setEmail(email);
 			}
 			
 			return userRepository.save(tweetUser);
