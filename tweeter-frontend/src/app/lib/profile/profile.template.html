@@ -1,19 +1,6 @@
 <div class="container">
 <div class="jumbotron">
 
-<!-- search field for tags and mentions
-<form class="form-inline ">
-  <label class="sr-only" for="inlineFormInputGroup">Search</label>
-    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <button class="input-group-addon" ng-click="profile.setSearch('@')">@</button>
-    <button class="input-group-addon" ng-click="profile.setSearch('#')">#</button>
-
-    <input ng-model="profile.searchInput" class="form-inline" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
-  </div>
-  <button type="submit" class="btn btn-primary" ui-sref="profile.searchLink">Search</button>
-</form>
- -->
-
 <!-- displays user profile information -->
   <div class="card text-center">
     <div>
@@ -36,10 +23,7 @@
           ui-sref-active="active">Edit Profile</a> |
         <a class="card-link" href ng-click="profile.deleteUser()"
           ui-sref-active="active">Delete Profile</a>
-      </div>
-
-<!-- used to display error messages -->
-        <div>{{profile.errorMessage}}</div>
+    </div>
     </div>
   </div>
 

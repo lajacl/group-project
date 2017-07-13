@@ -65,10 +65,6 @@ const controller =
       return this.service.updateFollowBtn(this.followers)
     }
 
-    get errorMessage () {
-      return this.service.errorMessage
-    }
-
     currUserFollowing () {
       return this.service.currUserFollowing(this.followers)
     }
@@ -83,8 +79,8 @@ const controller =
 
     followUser () {
       if (this.service.isLoggedOn()) {
-        this.service.followUser(this.username)
-        this.$state.reload()
+        this.service.followUser(this.username).then(() =>
+        this.$state.reload('profile'))
       } else {
         this.service.errorMessage = 'Log In To Follow This User: ' + this.username
         this.$log.log('Not Logged In To Follow This User: ' + this.username)
@@ -93,8 +89,8 @@ const controller =
 
     unfollowUser () {
       if (this.service.isLoggedOn()) {
-        this.service.unfollowUser(this.username)
-        this.$state.reload()
+        this.service.unfollowUser(this.username).then(() =>
+        this.$state.reload('profile'))
       } else {
         this.$log.log('Not Logged In To Unfollow This User: ' + this.username)
       }
@@ -123,27 +119,7 @@ const controller =
       return this.service.isLoggedOn()
     }
 
-    // search functions
-        // prefix = ''
-        searchLink = ''
-
-        setSearch (prefix) {
-          this.$log.log('Search link: ' + this.searchLink)
-          this.$log.log('Search prefix: ' + prefix)
-          if (prefix === '#') {
-            this.searchLink = 'tag({label: profile.searchInput})'
-            this.$log.log('Search hashtag: ' + this.searchLink)
-            this.$log.log('Search link: ' + this.searchLink)
-          } else if (prefix === '@') {
-            this.searchLink = 'mention({label: profile.searchInput})'
-            this.$log.log('Search mention: ' + this.searchLink)
-            this.$log.log('Search link: ' + this.searchLink)
-          } else {
-            this.service.errorMessage = 'You must select @ or # to search'
-          }
-        }
-
-  }
+}
 
 export const twtrProfile = {
   controller,

@@ -21,6 +21,19 @@ const controller = class TwtrAppController {
   loggingOut () {
     this.loginService.logout().then(() => this.$state.go('feed', { username: '' }, { reload: true }))
   }
+
+  // search by tags / mentions
+  searchType = '#'
+  currSearch = 'Tag'
+  search () {
+    let input = this.searchInput
+    if (this.searchType === '#') {
+      this.$state.go('tag', {label: input}, {reload: true})
+    } else if (this.searchType === '@') {
+      this.$state.go('profile', {username: input}, {reload: true})
+    }
+  }
+
 }
 
 export const twtrApp = {
