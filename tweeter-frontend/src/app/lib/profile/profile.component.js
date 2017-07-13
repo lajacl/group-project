@@ -18,10 +18,7 @@ const controller =
       this.$state = $state
       $log.debug('twtr-profile')
       this.localStorageService = localStorageService
-    }
-
-    get follow_btn_text () {
-      return this.service.updateFollowBtn(this.followers)
+      this.$log = $log
     }
 
     get username () {
@@ -64,21 +61,30 @@ const controller =
       return this.service.isCurrentUser(this.username)
     }
 
-    get isActive () {
-      return this.service.isActiveUser(this.username)
+    get follow_btn_text () {
+      return this.service.updateFollowBtn(this.followers)
     }
 
-    // updateFollowBtn () {
-    //   return this.service.updateFollowBtn(this.followers)
-    // }
+    get errorMessage () {
+      return this.service.errorMessage
+    }
 
     currUserFollowing () {
       return this.service.currUserFollowing(this.followers)
     }
 
+    followBtn () {
+      if (this.follow_btn_text === 'Follow') {
+        this.followUser()
+      } else {
+        this.unfollowUser()
+      }
+    }
+
     followUser () {
       if (this.service.isLoggedOn()) {
-        this.service.followUser(this.username).then(this.$state.reload())
+        this.service.followUser(this.username)
+        this.$state.reload()
       } else {
         this.service.errorMessage = 'Log In To Follow This User: ' + this.username
         this.$log.log('Not Logged In To Follow This User: ' + this.username)
@@ -87,25 +93,17 @@ const controller =
 
     unfollowUser () {
       if (this.service.isLoggedOn()) {
-        this.service.unfollowUser(this.username).then(this.$state.reload('profile'))
+        this.service.unfollowUser(this.username)
+        this.$state.reload()
       } else {
         this.$log.log('Not Logged In To Unfollow This User: ' + this.username)
       }
     }
 
-    // userExists () {
-    //   return this.service.userExists()
-    // }
-
     deleteUser () {
-      this.service.deleteUser().then(this.$state.go('login'))
+      this.service.deleteUser()
+      this.$state.go('login')
     }
-
-    get errorMessage () {
-      return this.service.errorMessage
-    }
-
-    formOpen = false
 
     // shows or hides profile update form
     updateForm () {
@@ -124,6 +122,26 @@ const controller =
     isLoggedOn () {
       return this.service.isLoggedOn()
     }
+
+    // search functions
+        // prefix = ''
+        searchLink = ''
+
+        setSearch (prefix) {
+          this.$log.log('Search link: ' + this.searchLink)
+          this.$log.log('Search prefix: ' + prefix)
+          if (prefix === '#') {
+            this.searchLink = 'tag({label: profile.searchInput})'
+            this.$log.log('Search hashtag: ' + this.searchLink)
+            this.$log.log('Search link: ' + this.searchLink)
+          } else if (prefix === '@') {
+            this.searchLink = 'mention({label: profile.searchInput})'
+            this.$log.log('Search mention: ' + this.searchLink)
+            this.$log.log('Search link: ' + this.searchLink)
+          } else {
+            this.service.errorMessage = 'You must select @ or # to search'
+          }
+        }
 
   }
 

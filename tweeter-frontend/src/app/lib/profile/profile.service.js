@@ -113,10 +113,10 @@ export class ProfileService {
     // Follow a user
     followUser (username) {
       let currentUsername = this.localStorageService.get('currentUser').username
-      let curentUserPass = this.localStorageService.get('password')
+      let currentUserPass = this.localStorageService.get('password')
       let method = 'POST'
       let apiUrl = 'http://localhost:8888/user/users/@' + username + '/follow'
-      let requestBody = { credentials: { username: currentUsername, password: curentUserPass } }
+      let requestBody = { credentials: { username: currentUsername, password: currentUserPass } }
 
       this.$http({
         method: method,
@@ -132,10 +132,10 @@ export class ProfileService {
     // Unfollow a user
     unfollowUser (username) {
       let currentUsername = this.localStorageService.get('currentUser').username
-      let curentUserPass = this.localStorageService.get('password')
+      let currentUserPass = this.localStorageService.get('password')
       let method = 'POST'
       let apiUrl = 'http://localhost:8888/user/users/@' + username + '/unfollow'
-      let requestBody = { credentials: { username: currentUsername, password: curentUserPass } }
+      let requestBody = { credentials: { username: currentUsername, password: currentUserPass } }
 
       this.$http({
         method: method,
@@ -148,14 +148,14 @@ export class ProfileService {
       })
     }
 
-    // Update / Patch a user
+    // Update / Patch a user's profile info
     updateUser (firstName, lastName, phone, email) {
       let currentUsername = this.localStorageService.get('currentUser').username
-      let curentUserPass = this.localStorageService.get('password')
+      let currentUserPass = this.localStorageService.get('password')
       let method = 'PATCH'
       let apiUrl = 'http://localhost:8888/user/users/@' + currentUsername
       let params = { firstName: firstName, lastName: lastName, phone: phone, email: email }
-      let requestBody = { credentials: { username: currentUsername, password: curentUserPass } }
+      let requestBody = { credentials: { username: currentUsername, password: currentUserPass } }
 
       this.$http({
         method: method,
@@ -165,36 +165,17 @@ export class ProfileService {
       }).then((response) => {
         this.$log.log(currentUsername + `s profile updated: ` + `, Status: ${response.status}`)
       }, (response) => {
+        this.$log.log(`Unable to update ` + currentUsername + `'s profile: ` + currentUsername + `, Status: ${response.status}`)
       })
     }
-
-    // userExists () {
-    //   let currentUsername = this.localStorageService.get('currentUser').username
-    //   let method = 'GET'
-    //   let apiUrl = 'http://localhost:8888/user/validate/username/exists/@' + currentUsername
-    //
-    //   this.$http({
-    //     method: method,
-    //     url: apiUrl,
-    //     headers: {
-    //       'Access-Control-Allow-Origin': '*',
-    //       'content-type': 'application/json'
-    //     }
-    //   }).then((response) => {
-    //     this.$log.log(`User deleted: ` + currentUsername + `, Status: ${response.status}`)
-    //     return response.data
-    //   }, (response) => {
-    //     this.$log.log(`Unable to delete user: ` + currentUsername + `, Status: ${response.status}`)
-    //   })
-    // }
 
     // Delete a user
     deleteUser () {
       let currentUsername = this.localStorageService.get('currentUser').username
-      let curentUserPass = this.localStorageService.get('password')
-      let method = 'DELETE'
-      let apiUrl = 'http://localhost:8888/user/users/@' + currentUsername
-      let requestBody = { credentials: { username: currentUsername, password: curentUserPass } }
+      let currentUserPass = this.localStorageService.get('password')
+      let method = 'POST'
+      let apiUrl = 'http://localhost:8888/user/users/delete/@' + currentUsername
+      let requestBody = { credentials: { username: currentUsername, password: currentUserPass } }
 
       this.$http({
         method: method,
@@ -207,26 +188,5 @@ export class ProfileService {
         this.$log.log(`Unable to delete user: ` + currentUsername + `, Status: ${response.status}`)
       })
     }
-
-    // Reactivate a user
-    // activateUser () {
-    //   let currentUsername = this.localStorageService.get('currentUser').username
-    //   let curentUserPass = this.localStorageService.get('password')
-    //   let currentEmail = this.localStorageService.get('currentUser').profile.email
-    //   let method = 'POST'
-    //   let apiUrl = 'http://localhost:8888/user/users'
-    //   let requestBody = { credentials: { username: currentUsername, password: curentUserPass },
-    //     profile: { email: currentEmail } }
-    //
-    //   this.$http({
-    //     method: method,
-    //     url: apiUrl,
-    //     data: requestBody
-    //   }).then((response) => {
-    //     this.$log.log(`User reactivated: ` + currentUsername + `, Status: ${response.status}`)
-    //   }, (response) => {
-    //     this.$log.log(`Unable to reactivate user: ` + currentUsername + `, Status: ${response.status}`)
-    //   })
-    // }
 
 }
