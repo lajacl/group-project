@@ -1,6 +1,5 @@
-<div class="panel panel-default">
-  <!-- <div class="panel-heading">Reposts</div> -->
+<div class="well panel panel-default tweet-info">
   <div class="panel-body" ng-repeat="r in tweetReposts.reposts">
-    <a ui-sref="tweet({ tweetId: r.id })">User: {{ r.author.username }}</a>
+    <a class="btn btn-default btn-block" ui-sref="tweet({ tweetId: r.id })">{{ r.author.username }} reposted on {{ r.posted | date: 'fullDate'}}</a>
   </div>
 </div>

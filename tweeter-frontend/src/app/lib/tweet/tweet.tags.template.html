@@ -1,6 +1,5 @@
-<div class="panel panel-default">
-  <!-- <div class="panel-heading">Tags</div> -->
+<div class="well panel panel-default tweet-info">
   <div class="panel-body" ng-repeat="t in tweetTags.tags">
-    <a ui-sref="tag({ label: t.label })">Tag: {{ t.label }}</a>
+    <a class="btn btn-default btn-block" ui-sref="tag({ label: t.label })">{{ t.label }}</a>
   </div>
 </div>
