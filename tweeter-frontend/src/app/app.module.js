@@ -4,12 +4,11 @@
  * @Email:  crschmit@gmail.com
  * @Filename: app.module.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-13T08:19:53-05:00
+ * @Last modified time: 2017-07-12T19:21:31-05:00
  */
 
  import ngLocalStorage from 'angular-local-storage'
  import ngUiRouter from 'angular-ui-router'
- import ngAnimate from 'angular-animate'
 
  import twtrLogin from 'login/login.module'
  import twtrRegister from 'register/register.module'
@@ -30,7 +29,6 @@
   .module('twtr.app', [
     ngLocalStorage,
     ngUiRouter,
-    ngAnimate,
     twtrLogin,
     twtrRegister,
     twtrUsers,
