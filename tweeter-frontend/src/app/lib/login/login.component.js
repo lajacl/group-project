@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T15:23:54-05:00
+ * @Last modified time: 2017-07-13T09:58:03-05:00
  */
 
 import 'login/login.styles'
@@ -25,7 +25,11 @@ const controller =
 
     login () {
       this.service.authenticate(this.username, this.password)
-                                .then(() => this.$state.reload('feed'))
+                                .then((data) => {
+                                  if (data === true) {
+                                    this.$state.reload('feed')
+                                  }
+                                })
     }
 
     logout () {

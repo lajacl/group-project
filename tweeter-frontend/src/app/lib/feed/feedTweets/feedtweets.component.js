@@ -4,9 +4,9 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feedtweets.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T15:22:40-05:00
+ * @Last modified time: 2017-07-13T14:32:01-05:00
  */
- import 'feed/feed.styles'
+ import 'feed/feedTweets/feedtweets.styles'
  import templateUrl from 'feed/feedTweets/feedtweets.template'
 
  const controller =

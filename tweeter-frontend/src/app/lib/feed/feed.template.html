@@ -6,7 +6,7 @@
   <div class="jumbotron">
       <div class="container-fluid">
         <div class="row">
-          <div class="well panel panel-info col-xs-12" ng-repeat="tweet in feed.tweets">
+          <div class="animate-repeat well panel panel-info col-xs-12" ng-repeat="tweet in feed.tweets">
               <div class="panel-header">
                 <h2 class="panel-title" >
                   <span class="btn btn-default btn-lg" ui-sref="profile({ username: tweet.author.username })" ui-sref-active="active">
@@ -16,8 +16,8 @@
                 </h2>
               </div>
             <div class="row panel-body">
-              <div id="tweetbody" class="clearfix well btn btn-default btn-lg col-xs-12" ui-sref="tweet({ tweetId: tweet.id })" ui-sref-active="active">
-                {{tweet.content | limitTo : 70}}... Click to read more
+              <div class="well btn btn-default btn-lg col-xs-12" ui-sref="tweet({ tweetId: tweet.id })" ui-sref-active="active">
+                {{tweet.content | limitTo : 70}}... <br> <small>(Click to read more)</small>
               </div>
             </div>
             <div class="panel-footer">Posted: {{tweet.posted | date: 'fullDate'}}</div>

@@ -4,39 +4,20 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.styles.less
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-13T09:11:00-05:00
+ * @Last modified time: 2017-07-13T14:35:55-05:00
  */
  @import "~bootstrap/less/bootstrap";
 
  .twtr-feed {
-   .ng-enter,
-   .ng-leave {
-     transition:all linear 0.25s;
+   .panel-body {
+     border: 1px solid rgba(200, 200, 200, 0.7);
+     border-radius: 10px;
    }
 
-   .ng-leave {
-     top: 0;
-     opacity: 1;
-   }
-
-   .ng-leave.ng-leave-active {
-     top: 200px;
-     opacity: 0;
-   }
-
-   .ng-enter{
-     opacity:0;
-     top: -500px;
-   }
-
-   .ng-enter.ng-enter-active {
-     opacity:1;
-     top: 0px;
-   }
-    .btn, .btn-default, .btn-lg {
-      border: none;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
-    }
+     .btn, .btn-default, .btn-lg {
+       border: none;
+       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+     }
 
    .page-header {
      text-align: center;
@@ -45,8 +26,4 @@
 
 twtr-feed {
   .twtr-feed;
-}
-
-twtr-feed-tweets {
-  .twtr-feed
 }
