@@ -3,8 +3,8 @@
  * @Date:   2017-07-10T11:11:27-05:00
  * @Email:  crschmit@gmail.com
  * @Filename: profile.component.js
- * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-10T13:43:37-05:00
+ * @Last modified by:   Anthony Perry
+ * @Last modified time: 2017-07-13T16:34:49-05:00
  */
 
 import 'profile/profile.styles'
@@ -12,12 +12,13 @@ import templateUrl from 'profile/profile.template'
 
 const controller =
   class TwtrProfileController {
-    constructor ($log, profileService, localStorageService, $state) {
+    constructor ($log, profileService, loginService, localStorageService, $state) {
       'ngInject'
       this.service = profileService
       this.$state = $state
       $log.debug('twtr-profile')
       this.localStorageService = localStorageService
+      this.loginService = loginService
       this.$log = $log
     }
 
@@ -126,6 +127,7 @@ export const twtrProfile = {
   templateUrl,
   controllerAs: 'profile',
   bindings: {
+    exists: '=',
     user: '=',
     following: '=',
     followers: '='
