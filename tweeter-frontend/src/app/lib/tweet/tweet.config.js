@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.config.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-13T02:37:26-05:00
+ * @Last modified time: 2017-07-13T09:47:51-05:00
  */
 
 export const config =
@@ -61,6 +61,34 @@ export const config =
                   .mentions(twt.id)
                   .then(res => { console.log(res.data); return res.data },
                         res => console.error(`mentions(${twt.id}) failed`))
+        }
+      }
+    })
+    $stateProvider.state({
+      name: 'tweet.reposts',
+      url: '/',
+      component: 'tweetReposts',
+      resolve: {
+        allReposts: function (twt, tweetService) {
+          // console.log(twt)
+          return tweetService
+                  .reposts(twt.id)
+                  .then(res => { console.log(res.data); return res.data },
+                        res => console.error(`reposts(${twt.id}) failed`))
+        }
+      }
+    })
+    $stateProvider.state({
+      name: 'tweet.tags',
+      url: '/',
+      component: 'tweetTags',
+      resolve: {
+        allTags: function (twt, tweetService) {
+          // console.log(twt)
+          return tweetService
+                  .tags(twt.id)
+                  .then(res => { console.log(res.data); return res.data },
+                        res => console.error(`tags(${twt.id}) failed`))
         }
       }
     })

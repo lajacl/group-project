@@ -67,4 +67,8 @@ export class TweetService {
       // .then(res => res.data,
       //       res => this.log.error(res.status))
   }
+
+  tags (tid) {
+    return this.http.get(`http://localhost:8888/tweet/tweets/${tid}/tags`)
+  }
 }

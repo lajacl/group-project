@@ -10,6 +10,8 @@
 import { twtrTweet } from 'tweet/tweet.component'
 import { tweetLikes } from 'tweet/tweet.likes.component'
 import { tweetMentions } from 'tweet/tweet.mentions.component'
+import { tweetReposts } from 'tweet/tweet.reposts.component'
+import { tweetTags } from 'tweet/tweet.tags.component'
 import { TweetService } from 'tweet/tweet.service'
 import { config } from 'tweet/tweet.config'
 
@@ -21,5 +23,7 @@ export default ng
   .component('twtrTweet', twtrTweet)
   .component('tweetLikes', tweetLikes)
   .component('tweetMentions', tweetMentions)
+  .component('tweetReposts', tweetReposts)
+  .component('tweetTags', tweetTags)
   .config(config)
   .name
