@@ -4,31 +4,38 @@
  * @Email:  atperry7@gmail.com
  * @Filename: feed.styles.less
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-13T09:23:54-05:00
+ * @Last modified time: 2017-07-13T09:29:29-05:00
  */
  @import "~bootstrap/less/bootstrap";
 
  .twtr-feed {
 
-   .ng-enter {
-     transition:all ease-in 1s;
+   .animate-repeat {
+     line-height:30px;
+     list-style:none;
+     box-sizing:border-box;
    }
 
-   .ng-leave {
-     opacity: 1;
+   .animate-repeat.ng-move,
+   .animate-repeat.ng-enter,
+   .animate-repeat.ng-leave {
+     transition:all linear 0.5s;
    }
 
-   .ng-leave.ng-leave-active {
-     opacity: 0;
-   }
-
-   .ng-enter{
+   .animate-repeat.ng-leave.ng-leave-active,
+   .animate-repeat.ng-move,
+   .animate-repeat.ng-enter {
      opacity:0;
+     max-height:0;
    }
 
-   .ng-enter.ng-enter-active {
+   .animate-repeat.ng-leave,
+   .animate-repeat.ng-move.ng-move-active,
+   .animate-repeat.ng-enter.ng-enter-active {
      opacity:1;
+     max-height:30px;
    }
+
 
     .btn, .btn-default, .btn-lg {
       border: none;
