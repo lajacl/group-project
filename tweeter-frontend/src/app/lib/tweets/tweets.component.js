@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweets.component.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T06:25:02-05:00
+ * @Last modified time: 2017-07-12T21:37:43-05:00
  */
 
 import 'tweets/tweets.styles'
@@ -15,7 +15,7 @@ class TwtrTweetsController {
   constructor ($log) {
     'ngInject'
     this.allTweets = undefined
-    $log.log('twtr-tweets is good')
+    $log.log('twtr-tweets ...')
   }
 
   get tweets () {
