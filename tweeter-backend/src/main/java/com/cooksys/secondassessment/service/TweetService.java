@@ -87,6 +87,7 @@ public class TweetService {
 				} else {
 					HashTag hashTag = new HashTag();
 					hashTag.setLabel(label);
+					hashTag.setLastUsed(Calendar.getInstance().getTime());
 					hashTags.add(hRepo.save(hashTag));
 				}
 			}
