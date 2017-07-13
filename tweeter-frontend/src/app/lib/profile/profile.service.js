@@ -137,7 +137,7 @@ export class ProfileService {
       let apiUrl = 'http://localhost:8888/user/users/@' + username + '/unfollow'
       let requestBody = { credentials: { username: currentUsername, password: currentUserPass } }
 
-      this.$http({
+      return this.$http({
         method: method,
         url: apiUrl,
         data: requestBody

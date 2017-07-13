@@ -13,8 +13,24 @@
     <ul class="nav navbar-nav navbar-left">
       <li><a ui-sref="users" ui-sref-active="active">Users</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a class="btn" ui-sref-active="active" ng-click="app.loggingOut()">Logout</a></li>
+
+    <ul class="row nav navbar-nav navbar-right">
+      <!-- search field for tags and mentions -->
+      <form class="navbar-form col-xs-6">
+        <li class="form-inline">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-default" ng-class="{active: app.searchType==='@'}"
+              ng-click="app.searchType='@'; app.currSearch='Username'">@</button>
+              <button class="btn btn-default" ng-class="{active: app.searchType==='#'}"
+              ng-click="app.searchType='#'; app.currSearch='Tag'">#</button>
+            </span>
+            <input type="text" class="form-control" placeholder="{{app.currSearch}}" ng-model="app.searchInput">
+          </div><
+        </li>
+      </form>
+      <li><a class="btn col-xs-3" ui-sref-active="active" ng-click="app.search()">Search</a></li>
+      <li><a class="btn col-xs-3" ui-sref-active="active" ng-click="app.loggingOut()">Logout</a></li>
     </ul>
   </div>
   </div>
