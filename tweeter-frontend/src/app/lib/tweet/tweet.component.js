@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.component.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T11:59:56-05:00
+ * @Last modified time: 2017-07-13T01:16:02-05:00
  */
 
 import 'tweet/tweet.styles'
@@ -19,17 +19,10 @@ class TwtrTweetController {
     this.twt = undefined
     this.username = undefined
     this.password = undefined
-    this._showReplyEditor = false
-    this._showLikes = false
-    this._showMentions = false
-    this._showReplies = false
-    this._showReposts = false
-    this._likes = []
-    this._mentions = []
-    this._replies = []
-    this._reposts = []
+    this.allReplies = undefined
+    this.replyContent = undefined
     this.log = $log
-    $log.log('twtr-tweet is good')
+    $log.log('twtr-tweet ...')
   }
 
   // get username () {
@@ -60,6 +53,10 @@ class TwtrTweetController {
     return true
   }
 
+  visibleToVisitors () {
+    return !this.currentUserIsLoggedIn()
+  }
+
   visibleToOwner () {
     return this.isOwnedByCurrentUser()
   }
@@ -88,92 +85,37 @@ class TwtrTweetController {
     return this.twt.posted
   }
 
-  get showReplyEditor () {
-    return this._showReplyEditor
-  }
-
-  toggleReplyEditor () {
-    this._showReplyEditor = !this._showReplyEditor
-  }
-
-  toggleLikes () {
-    this._showLikes = !this._showLikes
-    // console.log(this._showLikes)
-    if(this._showLikes) this.likes()
-    // console.log(this._likes)
-  }
-
-  toggleMentions () {
-    this._showMentions = !this._showMentions
-    if(this._showMentions) this.mentions()
-  }
-
-  toggleReplies () {
-    this._showReplies = !this._showReplies
-    if(this._showReplies) this.replies()
-  }
-
-  toggleReposts () {
-    this._showReposts = !this._showReposts
-    if(this._showReposts) this.reposts()
-  }
-
-  // API methods
-  delete () {
-    this.svc.delete(this.id)
-    this.state.go('feed', { username: '' })
-  }
-
-  like () {
-    return this.svc.like(this.user, this.id)
+  get replies () {
+    return this.allReplies
   }
 
   reply () {
     this.svc.reply(this.user, this.replyContent, this.id)
-    this.state.go('tweet',
-                  { twt: this.tweet,
-                    username: this.user.username,
-                    password: this.user.password },
-                  { reload: true })
+    // this.state.go('tweet({ tweetId: t.id })')
+    console.log('hello')
+    // this.state.reload()
+    this.state.go('tweet', null, {reload: true})
+  }
+
+  like () {
+    this.svc.like(this.user, this.id)
+    this.state.go('tweet', null, {reload: true})
   }
 
   repost () {
     this.svc.repost(this.user, this.id)
-    this.state.go('tweet',
-                  { twt: this.tweet,
-                    username: this.user.username,
-                    password: this.user.password },
-                  { reload: true })
+    this.state.go('tweet', null, {reload: true})
   }
 
-  likes () {
-    this.svc.likes(this.id).then(
-      res => this._likes = res.data,
-      res => console.error('TwtrTweetController.likes'))
-  }
-
-  mentions () {
-    this.svc.mentions(this.id).then(
-      res => this._mentions = res.data,
-      res => console.error('TwtrTweetController.mentions'))
-  }
-
-  replies () {
-    this.svc.replies(this.id).then(
-      res => this._replies = res.data,
-      res => console.error('TwtrTweetController.replies'))
-  }
-
-  reposts () {
-    this.svc.reposts(this.id).then(
-      res => this._reposts = res.data,
-      res => console.error('TwtrTweetController.reposts'))
+  delete () {
+    this.svc.delete(this.id)
+    this.state.go('feed', { username: '' })
   }
 }
 
 export const twtrTweet = {
   controller,
   templateUrl,
-  bindings: { twt: '<', username: '<', password: '<' },
+  bindings: { twt: '<', username: '<', allReplies: '=', password: '<' },
   controllerAs: 'tweet'
 }

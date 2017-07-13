@@ -1,9 +1,10 @@
 <div class="panel panel-default">
-  <div class="panel-heading">{{simpleUser.username}}</div>
-  <div class="panel-body">
-    <h4>Name: {{simpleUser.profile.firstName}} {{simpleUser.profile.lastName}}</h4>
-    <h4>email: {{simpleUser.profile.email}}</h4>
-    <h4>phone: {{simpleUser.profile.phone}}</h4>
-  </div>
-  <div class="panel-footer">user since {{simpleUser.joined}}</div>
+  <div class="panel-heading well"><h3>{{simpleUser.username}}</h3></div>
+    <div class="panel-body">
+        <div class="row">
+          <div class="btn btn-default btn-lg col-xs-6" ui-sref="profile({ username: simpleUser.username })">View Profile</div>
+          <div class="btn btn-default btn-lg col-xs-6" ui-sref="feed({ username : simpleUser.username })">View Tweets</div>
+        </div>
+    </div>
+    <div class="panel-footer well">User since: {{simpleUser.joined | date: 'fullDate'}}</div>
 </div>

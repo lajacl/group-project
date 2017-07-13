@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,6 +56,7 @@ public class UserController {
 		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return uService.getAll().stream()
 				.filter(user -> user.getIsActive().equals(true))
+				.sorted((p1, p2) -> p2.getJoined().compareTo(p1.getJoined()))
 				.map(tMapper::tUserDto)
 				.collect(Collectors.toList());
 	}
