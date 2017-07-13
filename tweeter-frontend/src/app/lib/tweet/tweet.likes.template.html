@@ -1,0 +1,5 @@
+<div class="well panel panel-default" id="likes-view">
+  <div class="panel-body font-weight-bold" ng-repeat="u in tweetLikes.likes">
+    <a ui-sref="profile({ username: u.username })">User: {{ u.username }}</a>
+  </div>
+</div>
