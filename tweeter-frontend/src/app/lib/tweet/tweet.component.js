@@ -22,7 +22,7 @@ class TwtrTweetController {
     this.allReplies = undefined
     this.replyContent = undefined
     this.log = $log
-    $log.log('twtr-tweet is good')
+    $log.log('twtr-tweet ...')
   }
 
   // get username () {

@@ -8,6 +8,7 @@
  */
 
 import { twtrTweet } from 'tweet/tweet.component'
+import { tweetLikes } from 'tweet/tweet.likes.component'
 import { TweetService } from 'tweet/tweet.service'
 import { config } from 'tweet/tweet.config'
 
@@ -17,5 +18,6 @@ export default ng
   .module('twtr.tweet', [simpleTweet])
   .service('tweetService', TweetService)
   .component('twtrTweet', twtrTweet)
+  .component('tweetLikes', tweetLikes)
   .config(config)
   .name

@@ -1,0 +1,6 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Likes</div>
+  <div class="panel-body" ng-repeat="u in tweetLikes.likes">
+    <a ui-sref="profile({ username: u.username })">User: {{ u.username }}</a>
+  </div>
+</div>
