@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.service.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T11:44:42-05:00
+ * @Last modified time: 2017-07-13T00:01:54-05:00
  */
 
 export class TweetService {
@@ -23,16 +23,16 @@ export class TweetService {
   like (user, tid) {
     return this.http.post(`http://localhost:8888/tweet/tweets/${tid}/like`, {
       credentials: user
-    }).then(res => this.log.debug(res.status),
-            res => this.log.error(res.status))
+    }).then(res => this.log(res.status),
+            res => this.log(res.status))
   }
 
   reply (user, content, tid) {
     return this.http.post(`http://localhost:8888/tweet/tweets/${tid}/reply`, {
       content,
       credentials: user
-    }).then(res => this.log.debug(res.status),
-            res => this.log.error(res.status))
+    }).then(res => console.log(res.data),
+            res => console.log(`tweet.reply(${this.id}) failed`))
   }
 
   repost (user, tid) {
@@ -59,8 +59,6 @@ export class TweetService {
   replies (tid) {
     // console.log(`tweetService.likes(${tid})`)
     return this.http.get(`http://localhost:8888/tweet/tweets/${tid}/replies`)
-      // .then(res => res.data,
-      //       res => this.log.error(res.status))
   }
 
   reposts (tid) {
