@@ -4,15 +4,16 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-11T18:48:09-05:00
+ * @Last modified time: 2017-07-12T15:02:30-05:00
  */
 
 export class LoginService {
-  constructor (localStorageService, $http, $log) {
+  constructor (localStorageService, $http, $log, $q) {
     'ngInject'
     this.localStorageService = localStorageService
     this.$http = $http
     this.$log = $log
+    this.$q = $q
   }
 
   /**
@@ -30,7 +31,7 @@ export class LoginService {
 
     let userObject = { credentials: { username: username, password: password } }
 
-    this.$http({
+    return this.$http({
       method: 'POST',
       url: 'http://localhost:8888/user/users/validate/user',
       data: userObject,
@@ -42,15 +43,26 @@ export class LoginService {
       if (response.data.username !== undefined) {
         this.localStorageService.set('currentUser', response.data)
         this.localStorageService.set('password', password)
+        return true
       }
+
+      return false
       this.$log.log(`Success going to and from server ${response.data.username}`)
     }, (response) => {
+      return false
       this.$log.log(`Success going to and from server, but returned an error ${response.status}`)
     })
   }
 
   /** Logs the current user out */
   logout () {
-    this.localStorageService.clearAll()
+    return this.$q((resolve, reject) => {
+      this.localStorageService.clearAll()
+      if (this.localStorageService.get('currentUser') === null) {
+        resolve(true)
+      } else {
+        reject(false)
+      }
+    })
   }
 }

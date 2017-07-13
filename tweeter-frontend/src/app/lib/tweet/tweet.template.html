@@ -8,7 +8,7 @@
       <li class="list-group-item">Posted: {{tweet.posted}}</li>
     </ul>
 
-    <a ng-if="tweet.visibleToOwner()" class="btn btn-primary">Edit</a>
+    <a ng-if="tweet.visibleToOwner()" class="btn btn-primary" ng-click="tweet.delete()">Delete</a>
     <a ng-if="tweet.visibleToOtherUsers()" class="btn btn-primary" ng-click="tweet.like()">Like</a>
     <a ng-if="tweet.visibleToOtherUsers()" class="btn btn-primary" ng-click="tweet.toggleReplyEditor()">Reply</a>
     <div class="t-editor" ng-show="tweet.showReplyEditor">
@@ -21,11 +21,39 @@
     </div>
     <a ng-if="tweet.visibleToOtherUsers()" class="btn btn-primary" ng-click="tweet.repost()">Repost</a>
 
-    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Likes</a>
-    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Mentions</a>
-    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Replies</a>
-    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary">Reposts</a>
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleLikes()">Likes</a>
+    <div ng-show="tweet._showLikes" class="list-group">
+      <h4>Likes</h4>
+      <a class="list-group-item" ng-repeat="usr in tweet._likes">
+        {{usr.username}}
+      </a>
+    </div>
 
-    <a class="btn btn-primary" ui-sref="tweets" ui-sref-active="active">Tweets</a>
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleMentions()">Mentions</a>
+    <div ng-show="tweet._showMentions" class="list-group">
+      <h4>Mentions</h4>
+      <a class="list-group-item" ng-repeat="usr in tweet._mentions">
+        {{usr.username}}
+      </a>
+    </div>
+
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleReplies()">Replies</a>
+    <div ng-show="tweet._showReplies" class="list-group">
+      <h4>Replies</h4>
+      <a class="list-group-item" ng-repeat="twt in tweet._replies" ui-sref="tweet({ tweetId: twt.id })" ui-sref-active="active">
+        ({{twt.id}}) {{twt.author.username}}: {{twt.content}}
+      </a>
+    </div>
+
+    <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.toggleReposts()">Reposts</a>
+    <div ng-show="tweet._showReposts" class="list-group">
+      <h4>Reposts</h4>
+      <a class="list-group-item" ng-repeat="twt in tweet._reposts"
+      ui-sref="tweet({ tweetId: twt.id })" ui-sref-active="active">
+        ({{twt.id}}) {{twt.author.username}}
+      </a>
+    </div>
+
+    <a class="btn btn-primary" ui-sref="feed({ username: '' })" ui-sref-active="active">Tweets</a>
   </div>
 </div>

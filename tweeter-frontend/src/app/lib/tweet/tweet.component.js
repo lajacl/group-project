@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.component.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-12T08:13:43-05:00
+ * @Last modified time: 2017-07-12T11:59:56-05:00
  */
 
 import 'tweet/tweet.styles'
@@ -20,6 +20,15 @@ class TwtrTweetController {
     this.username = undefined
     this.password = undefined
     this._showReplyEditor = false
+    this._showLikes = false
+    this._showMentions = false
+    this._showReplies = false
+    this._showReposts = false
+    this._likes = []
+    this._mentions = []
+    this._replies = []
+    this._reposts = []
+    this.log = $log
     $log.log('twtr-tweet is good')
   }
 
@@ -87,7 +96,34 @@ class TwtrTweetController {
     this._showReplyEditor = !this._showReplyEditor
   }
 
+  toggleLikes () {
+    this._showLikes = !this._showLikes
+    // console.log(this._showLikes)
+    if(this._showLikes) this.likes()
+    // console.log(this._likes)
+  }
+
+  toggleMentions () {
+    this._showMentions = !this._showMentions
+    if(this._showMentions) this.mentions()
+  }
+
+  toggleReplies () {
+    this._showReplies = !this._showReplies
+    if(this._showReplies) this.replies()
+  }
+
+  toggleReposts () {
+    this._showReposts = !this._showReposts
+    if(this._showReposts) this.reposts()
+  }
+
   // API methods
+  delete () {
+    this.svc.delete(this.id)
+    this.state.go('feed', { username: '' })
+  }
+
   like () {
     return this.svc.like(this.user, this.id)
   }
@@ -108,6 +144,30 @@ class TwtrTweetController {
                     username: this.user.username,
                     password: this.user.password },
                   { reload: true })
+  }
+
+  likes () {
+    this.svc.likes(this.id).then(
+      res => this._likes = res.data,
+      res => console.error('TwtrTweetController.likes'))
+  }
+
+  mentions () {
+    this.svc.mentions(this.id).then(
+      res => this._mentions = res.data,
+      res => console.error('TwtrTweetController.mentions'))
+  }
+
+  replies () {
+    this.svc.replies(this.id).then(
+      res => this._replies = res.data,
+      res => console.error('TwtrTweetController.replies'))
+  }
+
+  reposts () {
+    this.svc.reposts(this.id).then(
+      res => this._reposts = res.data,
+      res => console.error('TwtrTweetController.reposts'))
   }
 }
 
