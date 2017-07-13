@@ -11,11 +11,12 @@ import 'app/app.styles'
 import templateUrl from 'app/app.template'
 
 const controller = class TwtrAppController {
-  constructor ($log, loginService, $state) {
+  constructor ($log, loginService, $state, localStorageService) {
     'ngInject'
     this.loginService = loginService
     this.$state = $state
     $log.debug('twtr-app ...')
+    this.localStorageService = localStorageService
   }
 
   loggingOut () {
@@ -32,6 +33,16 @@ const controller = class TwtrAppController {
     } else if (this.searchType === '@') {
       this.$state.go('profile', {username: input}, {reload: true})
     }
+  }
+
+  // Checks if a user is currently logged in
+  isLoggedOn () {
+    return this.localStorageService.get('currentUser') !== null
+  }
+
+  getProfileUrl () {
+    let currentUsername = this.localStorageService.get('currentUser').username
+    return '/profile/' + currentUsername
   }
 
 }
