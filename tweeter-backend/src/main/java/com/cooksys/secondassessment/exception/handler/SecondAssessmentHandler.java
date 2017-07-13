@@ -38,4 +38,10 @@ public class SecondAssessmentHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.IM_USED, request);
 	}
 	
+	@ExceptionHandler
+	public ResponseEntity<Object> handleViolationException(javax.validation.ConstraintViolationException ex, WebRequest request) {
+		log.warn(ex.getMessage());
+		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+	}
+	
 }
