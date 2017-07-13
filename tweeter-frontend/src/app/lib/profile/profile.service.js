@@ -157,7 +157,7 @@ export class ProfileService {
       let params = { firstName: firstName, lastName: lastName, phone: phone, email: email }
       let requestBody = { credentials: { username: currentUsername, password: currentUserPass } }
 
-      this.$http({
+      return this.$http({
         method: method,
         url: apiUrl,
         params: params,

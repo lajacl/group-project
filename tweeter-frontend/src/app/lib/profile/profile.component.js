@@ -93,8 +93,8 @@ const controller =
 
     unfollowUser () {
       if (this.service.isLoggedOn()) {
-        this.service.unfollowUser(this.username)
-        this.$state.reload()
+        this.service.unfollowUser(this.username).then(() =>
+        this.$state.reload('profile'))
       } else {
         this.$log.log('Not Logged In To Unfollow This User: ' + this.username)
       }
@@ -122,16 +122,6 @@ const controller =
     isLoggedOn () {
       return this.service.isLoggedOn()
     }
-
-    // search by tags / mentions
-    // search () {
-    //   let input = this.searchInput
-    //   if (this.prefix === '#') {
-    //     this.$state.go('tag', {label: input})
-    //   } else if (this.prefix === '@') {
-    //     this.$state.go('profile', {username: input}, {reload: true})
-    //   }
-    // }
 
 }
 
