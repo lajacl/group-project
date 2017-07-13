@@ -17,8 +17,6 @@ export class ProfileService {
     this.$state = $state
   }
 
-  errorMessage = ''
-
   // Checks if a user is currently logged in
   isLoggedOn () {
     return this.localStorageService.get('currentUser') !== null
@@ -48,11 +46,6 @@ export class ProfileService {
     }
   }
 
-// error display
- errorMessage () {
-   return this.errorMessage
- }
-
   // Get user by username
   getUser (username) {
     let method = 'GET'
@@ -68,7 +61,6 @@ export class ProfileService {
     }).then((response) => {
       return response.data
     }, (response) => {
-      this.$log.log(`User not found ${response.status}`)
     })
   }
 
@@ -87,7 +79,6 @@ export class ProfileService {
     }).then((response) => {
       return response.data
     }, (response) => {
-      this.$log.log(`Followed users not found, ${response.status}`)
     })
   }
 
@@ -106,7 +97,6 @@ export class ProfileService {
       }).then((response) => {
         return response.data
       }, (response) => {
-        this.$log.log(`Users following not found ${response.status}`)
       })
     }
 
@@ -118,14 +108,12 @@ export class ProfileService {
       let apiUrl = 'http://localhost:8888/user/users/@' + username + '/follow'
       let requestBody = { credentials: { username: currentUsername, password: currentUserPass } }
 
-      this.$http({
+      return this.$http({
         method: method,
         url: apiUrl,
         data: requestBody
       }).then((response) => {
-        this.$log.log(`User followed: ` + username + `, Status: ${response.status}`)
       }, (response) => {
-        this.$log.log(`Unable to follow user ` + username + `, Status: ${response.status}`)
       })
     }
 
@@ -142,9 +130,7 @@ export class ProfileService {
         url: apiUrl,
         data: requestBody
       }).then((response) => {
-        this.$log.log(`User unfollowed: ` + username + `, Status: ${response.status}`)
       }, (response) => {
-        this.$log.log(`Unable to unfollow user: ` + username + `, Status: ${response.status}`)
       })
     }
 
@@ -163,9 +149,8 @@ export class ProfileService {
         params: params,
         data: requestBody
       }).then((response) => {
-        this.$log.log(currentUsername + `s profile updated: ` + `, Status: ${response.status}`)
       }, (response) => {
-        this.$log.log(`Unable to update ` + currentUsername + `'s profile: ` + currentUsername + `, Status: ${response.status}`)
+
       })
     }
 
@@ -182,10 +167,8 @@ export class ProfileService {
         url: apiUrl,
         data: requestBody
       }).then((response) => {
-        this.$log.log(`User deleted: ` + currentUsername + `, Status: ${response.status}`)
         this.localStorageService.clearAll()
       }, (response) => {
-        this.$log.log(`Unable to delete user: ` + currentUsername + `, Status: ${response.status}`)
       })
     }
 

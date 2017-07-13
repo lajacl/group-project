@@ -65,10 +65,6 @@ const controller =
       return this.service.updateFollowBtn(this.followers)
     }
 
-    get errorMessage () {
-      return this.service.errorMessage
-    }
-
     currUserFollowing () {
       return this.service.currUserFollowing(this.followers)
     }
