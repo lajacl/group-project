@@ -14,7 +14,7 @@
             <div class="panel-body" ng-repeat="t in tweet.replies">
               <simple-tweet twt="t" ui-sref="tweet({ tweetId: t.id })" ui-sref-active="active"></simple-tweet>
             </div>
-            <div class="panel-footer">
+            <div class="panel-footer" ng-if="tweet.visibleToAnyUser()">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Write a reply..." ng-model="tweet.replyContent">
                 <a class="btn btn-primary" ng-click="tweet.reply()">Post</a>
@@ -25,14 +25,25 @@
 
         </div>
 
-        <div class="row">Info.</div>
+        <div class="row">
+          Info.
+        </div>
       </div>
       <div class="col-xs-4">
+        <div class="row">
+          <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.like()">Like</a>
+        </div>
+        <div class="row">
+          <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.repost()">Repost</a>
+        </div>
         <div class="row">
           <a ng-if="tweet.visibleToOwner()" class="btn btn-primary" ng-click="tweet.delete()">Delete</a>
         </div>
         <div class="row">
-          <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.like()">Like</a>
+          <a ng-if="tweet.visibleToVisitors()" class="btn btn-primary" ui-sref="feed({ username: '' })">Login</a>
+        </div>
+        <div class="row">
+          <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ui-sref="feed({ username: '' })">Feed</a>
         </div>
       </div>
     </div>

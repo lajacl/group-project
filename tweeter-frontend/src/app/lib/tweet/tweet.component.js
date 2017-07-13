@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.component.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-13T01:07:36-05:00
+ * @Last modified time: 2017-07-13T01:16:02-05:00
  */
 
 import 'tweet/tweet.styles'
@@ -53,6 +53,10 @@ class TwtrTweetController {
     return true
   }
 
+  visibleToVisitors () {
+    return !this.currentUserIsLoggedIn()
+  }
+
   visibleToOwner () {
     return this.isOwnedByCurrentUser()
   }
@@ -93,14 +97,19 @@ class TwtrTweetController {
     this.state.go('tweet', null, {reload: true})
   }
 
-  delete () {
-    this.svc.delete(this.id)
-    this.state.go('feed', { username: '' })
-  }
-
   like () {
     this.svc.like(this.user, this.id)
     this.state.go('tweet', null, {reload: true})
+  }
+
+  repost () {
+    this.svc.repost(this.user, this.id)
+    this.state.go('tweet', null, {reload: true})
+  }
+
+  delete () {
+    this.svc.delete(this.id)
+    this.state.go('feed', { username: '' })
   }
 }
 
