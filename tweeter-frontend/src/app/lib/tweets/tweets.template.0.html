@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="jumbotron">
+    <h3>All Tweets</h3>
+
+    <div class="list-group">
+      <a class="list-group-item" ng-repeat="tweet in tweets.tweets" ui-sref="tweet({ tweetId: tweet.id })" ui-sref-active="active">
+        {{tweet.id}}: {{tweet.author.username}} ({{tweet.posted}})
+      </a>
+    </div>
+  </div>
+</div>

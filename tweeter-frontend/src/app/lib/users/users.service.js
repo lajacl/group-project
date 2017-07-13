@@ -8,8 +8,13 @@
  */
 
 export class UsersService {
-  constructor (usersData) {
+  constructor ($http) {
     'ngInject'
-    Object.assign(this, usersData)
+    // Object.assign(this, usersData)
+    this.http = $http
+  }
+
+  getAllUsers () {
+    return this.http.get('http://localhost:8888/user/users')
   }
 }

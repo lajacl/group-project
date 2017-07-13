@@ -89,7 +89,7 @@ public class UserController {
 		return tMapper.tUserDto(uService.updateAUser(user, username, firstName, lastName, phone, email));
 	}
 	
-	@DeleteMapping("users/@{username}")
+	@PostMapping("users/delete/@{username}")
 	public TweetUserDto deleteUser(@RequestBody TweetUserCredOnlyDto creds,  @PathVariable String username, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return tMapper.tUserDto(uService.delete(username, tMapper.toTweetUser(creds)));

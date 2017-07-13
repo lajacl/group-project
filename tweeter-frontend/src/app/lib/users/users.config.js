@@ -8,16 +8,17 @@
  */
 
 export const config =
- ($stateProvider) => {
-   'ngInject'
-   $stateProvider.state({
-     name: 'users',
-     url: '/users',
-     component: 'twtrUsers',
-     resolve: {
-       allUsers: function (usersService) {
-         return usersService.getAllUsers()
-       }
-     }
-   })
- }
+  ($stateProvider) => {
+    'ngInject'
+    $stateProvider.state({
+      name: 'users',
+      url: '/users',
+      component: 'twtrUsers',
+      resolve: {
+        allUsers: function (usersService) {
+        return usersService.getAllUsers()
+          .then(response => response.data, response => undefined)
+        }
+      }
+    })
+  }
