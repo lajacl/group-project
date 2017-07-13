@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T15:02:30-05:00
+ * @Last modified time: 2017-07-13T16:28:48-05:00
  */
 
 export class LoginService {
@@ -21,6 +21,25 @@ export class LoginService {
    */
   isAuthenticated () {
     return this.localStorageService.get('currentUser') !== null
+  }
+
+  userDoesExists (user) {
+    return this.$http({
+      method: 'GET',
+      url: `http://localhost:8888/user/validate/username/exists/@${user}`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'content-type': 'application/json'
+      }
+    }).then((response) => {
+      if (response.data === true) {
+        return true
+      } else {
+        return false
+      }
+    }, (response) => {
+      return false
+    })
   }
 
   /**
@@ -47,10 +66,8 @@ export class LoginService {
       }
 
       return false
-      this.$log.log(`Success going to and from server ${response.data.username}`)
     }, (response) => {
       return false
-      this.$log.log(`Success going to and from server, but returned an error ${response.status}`)
     })
   }
 
