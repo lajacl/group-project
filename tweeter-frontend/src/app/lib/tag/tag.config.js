@@ -4,12 +4,13 @@
  * @Email:  atperry7@gmail.com
  * @Filename: tag.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T19:46:26-05:00
+ * @Last modified time: 2017-07-12T19:52:40-05:00
  */
  export const config =
    ($stateProvider) => {
      'ngInject'
      $stateProvider.state({
+       parent: 'alltag',
        name: 'tag',
        url: '/tag/{label}',
        component: 'twtrTag',
@@ -20,7 +21,7 @@
        },
        resolve: {
          tweets: (tagService, $transition$) => {
-           return tagService.displayTweets($transition$.params().label).catch((err) => {})
+           return tagService.displayTweets($transition$.params().label)
          },
 
          label: ($transition$) => $transition$.params().label
