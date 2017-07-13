@@ -4,11 +4,12 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.module.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T06:48:31-05:00
+ * @Last modified time: 2017-07-13T02:27:41-05:00
  */
 
 import { twtrTweet } from 'tweet/tweet.component'
 import { tweetLikes } from 'tweet/tweet.likes.component'
+import { tweetMentions } from 'tweet/tweet.mentions.component'
 import { TweetService } from 'tweet/tweet.service'
 import { config } from 'tweet/tweet.config'
 
@@ -19,5 +20,6 @@ export default ng
   .service('tweetService', TweetService)
   .component('twtrTweet', twtrTweet)
   .component('tweetLikes', tweetLikes)
+  .component('tweetMentions', tweetMentions)
   .config(config)
   .name
