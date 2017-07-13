@@ -1,17 +1,31 @@
 <div class="container">
 <div class="jumbotron">
 
+<!-- search field for tags and mentions
+<form class="form-inline ">
+  <label class="sr-only" for="inlineFormInputGroup">Search</label>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <button class="input-group-addon" ng-click="profile.setSearch('@')">@</button>
+    <button class="input-group-addon" ng-click="profile.setSearch('#')">#</button>
+
+    <input ng-model="profile.searchInput" class="form-inline" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+  </div>
+  <button type="submit" class="btn btn-primary" ui-sref="profile.searchLink">Search</button>
+</form>
+ -->
+
+<!-- displays user profile information -->
   <div class="card text-center">
     <div>
-      <h3 class="card-header">{{profile.username}}'s Profile</h3>
+      <h2 class="card-header">{{profile.username}}'s Profile</h2>
     </div>
     <div class="card-block">
       <p class="card-title">Name: {{profile.fName}} {{profile.lName}}</p>
       <p class="card-text">Email: {{profile.email}}</p>
       <p class="card-text">Phone Number: {{profile.phone}}</p>
-      <button class="btn btn-primary" ui-sref="feed({username: profile.user.username})"//$state.go{username: profile.user.username}
+      <button class="btn btn-primary" ui-sref="feed({username: profile.user.username})"
         ui-sref-active="active">View Tweets</button>
-      <button class="btn btn-primary" href ng-click="profile.followUser()"
+      <button class="btn btn-primary" href ng-click="profile.followBtn()"
         ui-sref-active="active" ng-hide="profile.isCurrentUser">{{profile.follow_btn_text}}</button>
     </div>
     <div class="card-footer text-muted">
@@ -24,30 +38,32 @@
           ui-sref-active="active">Delete Profile</a>
       </div>
 
+<!-- used to display error messages -->
         <div>{{profile.errorMessage}}</div>
     </div>
   </div>
 
-
+<!-- form to update user profile-->
   <div class="card-block">
   <form class="ng-hide" ng-show="profile.formOpen">
       <div class="input-group">
         <span class="input-group-addon" id="sizing-addon3">First Name: </span>
-        <input ng-model="profile.fName" type="text" class="form-control" placeholder="Bob">
+        <input type="text" ng-model="profile.fName" class="form-control" placeholder="Bob">
         <span class="input-group-addon" id="sizing-addon3">Last Name: </span>
-        <input ng-model="profile.lName" type="text" class="form-control" placeholder="Builder">
+        <input type="text" ng-model="profile.lName" class="form-control" placeholder="Builder">
       </div>
       <div class="input-group">
         <span class="input-group-addon" id="sizing-addon1">Email: </span>
-        <input ng-model="profile.email" type="email" class="form-control" placeholder="checkme@gmail.com">
+        <input type="email" ng-model="profile.email" class="form-control" placeholder="checkme@gmail.com">
         <span class="input-group-addon" id="sizing-addon3">Phone Number: </span>
-        <input ng-model="profile.phone" type="text" class="form-control" placeholder="(123) 456-7890">
+        <input type="text" ng-model="profile.phone" class="form-control" placeholder="(123) 456-7890">
       </div>
       <div><span class="btn btn-primary" ng-click="profile.updateUser()">Update Profile</span></div>
     <div>{{profile.updateError()}}</div>
   </form>
   </div>
 
+<!-- list of users followed -->
     <div class="card">
     <div class="card-block">
         <p>Following ({{profile.following.length}}):</p>
@@ -57,6 +73,7 @@
     </div>
     </div>
 
+<!-- list of followers -->
     <div class="card">
     <div class="card-block">
       <p>Followers ({{profile.followers.length}}):</p>
