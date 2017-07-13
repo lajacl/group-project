@@ -3,12 +3,13 @@
  * @Date:   2017-07-10T10:55:31-05:00
  * @Email:  crschmit@gmail.com
  * @Filename: app.module.js
- * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-11T13:42:02-05:00
+ * @Last modified by:   Anthony Perry
+ * @Last modified time: 2017-07-13T08:19:53-05:00
  */
 
  import ngLocalStorage from 'angular-local-storage'
  import ngUiRouter from 'angular-ui-router'
+ import ngAnimate from 'angular-animate'
 
  import twtrLogin from 'login/login.module'
  import twtrRegister from 'register/register.module'
@@ -18,6 +19,8 @@
  import twtrTweet from 'tweet/tweet.module'
  import twtrFeed from 'feed/feed.module'
  import twtrPost from 'post/post.module'
+ import twtrTag from 'tag/tag.module'
+ import twtrAllTag from 'alltags/alltag.module'
 
  import { twtrApp } from 'app/app.component'
  import { config } from 'app/app.config'
@@ -27,6 +30,7 @@
   .module('twtr.app', [
     ngLocalStorage,
     ngUiRouter,
+    ngAnimate,
     twtrLogin,
     twtrRegister,
     twtrUsers,
@@ -34,7 +38,9 @@
     twtrTweets,
     twtrTweet,
     twtrFeed,
-    twtrPost
+    twtrPost,
+    twtrTag,
+    twtrAllTag
   ])
   .component('twtrApp', twtrApp)
   .config(config)

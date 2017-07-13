@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T11:21:38-05:00
+ * @Last modified time: 2017-07-12T15:02:30-05:00
  */
 
 export class LoginService {
@@ -31,7 +31,7 @@ export class LoginService {
 
     let userObject = { credentials: { username: username, password: password } }
 
-    this.$http({
+    return this.$http({
       method: 'POST',
       url: 'http://localhost:8888/user/users/validate/user',
       data: userObject,
@@ -43,9 +43,13 @@ export class LoginService {
       if (response.data.username !== undefined) {
         this.localStorageService.set('currentUser', response.data)
         this.localStorageService.set('password', password)
+        return true
       }
+
+      return false
       this.$log.log(`Success going to and from server ${response.data.username}`)
     }, (response) => {
+      return false
       this.$log.log(`Success going to and from server, but returned an error ${response.status}`)
     })
   }

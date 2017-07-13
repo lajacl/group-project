@@ -3,8 +3,8 @@
  * @Date:   2017-07-10T11:11:27-05:00
  * @Email:  crschmit@gmail.com
  * @Filename: profile.config.js
- * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-10T14:32:24-05:00
+ * @Last modified by:   Anthony Perry
+ * @Last modified time: 2017-07-12T16:09:48-05:00
  */
 
 export const config =
@@ -13,6 +13,7 @@ export const config =
     $stateProvider.state({
       name: 'profile',
       url: '/profile/{username}',
+      data: { requiresAuth: true },
       component: 'twtrProfile',
       resolve: {
         user: function (profileService, $transition$) {

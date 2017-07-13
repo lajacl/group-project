@@ -1,12 +1,14 @@
-<twtr-feed-login ng-if="!feed.hasCurrentUser()"></twtr-feed-login>
-<twtr-feed-tweets ng-if="feed.hasCurrentUser()"></twtr-feed-tweets>
+<div class="row">
+  <div class="page-header col-xs-12">
+    <h1>Tweets with #{{tag.label}}</h1>
+  </div>
+</div>
 
-<twtr-feed-header></twtr-feed-header>
 <div class="container">
   <div class="jumbotron">
       <div class="container-fluid">
         <div class="row">
-          <div class="well panel panel-info col-xs-12" ng-repeat="tweet in feed.tweets">
+          <div class="well panel panel-info col-xs-12" ng-repeat="tweet in tag.tweets">
               <div class="panel-header">
                 <h2 class="panel-title" >
                   <span class="btn btn-default btn-lg" ui-sref="profile({ username: tweet.author.username })" ui-sref-active="active">
@@ -22,9 +24,6 @@
             </div>
             <div class="panel-footer">Posted: {{tweet.posted | date: 'fullDate'}}</div>
           </div>
-          <li class="panel" ng-if="feed.tweets.length === 0">
-            <strong>You don't have any tweets yet...</strong>
-          </li>
         </div>
       </div>
     </div>
