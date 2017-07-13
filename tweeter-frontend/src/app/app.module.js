@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: app.module.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T18:03:32-05:00
+ * @Last modified time: 2017-07-12T19:21:31-05:00
  */
 
  import ngLocalStorage from 'angular-local-storage'
@@ -19,6 +19,7 @@
  import twtrFeed from 'feed/feed.module'
  import twtrPost from 'post/post.module'
  import twtrTag from 'tag/tag.module'
+ import twtrAllTag from 'alltags/alltag.module'
 
  import { twtrApp } from 'app/app.component'
  import { config } from 'app/app.config'
@@ -36,7 +37,8 @@
     twtrTweet,
     twtrFeed,
     twtrPost,
-    twtrTag
+    twtrTag,
+    twtrAllTag
   ])
   .component('twtrApp', twtrApp)
   .config(config)
