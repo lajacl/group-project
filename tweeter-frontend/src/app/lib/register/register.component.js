@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: register.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T15:23:38-05:00
+ * @Last modified time: 2017-07-13T10:00:10-05:00
  */
  import 'register/register.styles'
  import templateUrl from 'register/register.template'
@@ -20,7 +20,11 @@
 
      join () {
        this.service.register(this.username, this.password, this.email, this.firstName, this.lastName, this.phoneNumber)
-                            .then(() => this.$state.reload('feed'))
+       .then((data) => {
+         if (data === true) {
+           this.$state.reload('feed')
+         }
+       })
      }
 
      registerError () {

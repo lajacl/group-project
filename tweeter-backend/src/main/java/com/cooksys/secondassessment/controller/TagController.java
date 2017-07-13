@@ -39,6 +39,7 @@ public class TagController {
 	public List<HashTagNoIdDto> getAll(HttpServletResponse response) {
 		return tService.getAll().stream()
 				.map(hMapper::hashTagNoIdDto)
+				.sorted((t1, t2) -> t2.getLastUsed().compareTo(t1.getLastUsed()))
 				.collect(Collectors.toList());
 	}
 	
