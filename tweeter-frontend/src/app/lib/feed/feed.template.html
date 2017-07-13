@@ -22,6 +22,9 @@
             </div>
             <div class="panel-footer">Posted: {{tweet.posted | date: 'fullDate'}}</div>
           </div>
+          <li class="panel" ng-if="feed.tweets.length === 0">
+            <strong>You don't have any tweets yet...</strong>
+          </li>
         </div>
       </div>
     </div>
