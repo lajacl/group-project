@@ -1,10 +1,9 @@
 <div class="container">
   <div class="jumbotron">
     <h3>Users</h3>
-    <div class="list-group">
-      <a class="list-group-item" ng-repeat="user in users.users" ui-sref="profile({ username: user.username })" ui-sref-active="active">
-        {{user.username}}
-      </a>
+
+    <div class="panel-group">
+      <simple-user ng-repeat="user in users.users" usr="user" ui-sref="profile({ username: user.username })" ui-sref-active="active"></simple-user>
     </div>
   </div>
 </div>
