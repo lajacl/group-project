@@ -17,8 +17,8 @@
             <div class="panel-footer">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Write a reply..." ng-model="tweet.replyContent">
+                <a class="btn btn-primary" ng-click="tweet.reply()">Post</a>
               </div>
-              <a class="btn btn-primary" ng-click="tweet.reply()">Post</a>
             </div>
 
           </div>
@@ -28,7 +28,12 @@
         <div class="row">Info.</div>
       </div>
       <div class="col-xs-4">
-        Buttons
+        <div class="row">
+          <a ng-if="tweet.visibleToOwner()" class="btn btn-primary" ng-click="tweet.delete()">Delete</a>
+        </div>
+        <div class="row">
+          <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.like()">Like</a>
+        </div>
       </div>
     </div>
 </div>

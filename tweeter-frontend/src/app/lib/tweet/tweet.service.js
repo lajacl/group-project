@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: tweet.service.js
  * @Last modified by:   Christian Schmitt
- * @Last modified time: 2017-07-13T00:01:54-05:00
+ * @Last modified time: 2017-07-13T01:10:58-05:00
  */
 
 export class TweetService {
@@ -23,8 +23,8 @@ export class TweetService {
   like (user, tid) {
     return this.http.post(`http://localhost:8888/tweet/tweets/${tid}/like`, {
       credentials: user
-    }).then(res => this.log(res.status),
-            res => this.log(res.status))
+    }).then(res => console.log(res.status),
+            res => console.log(res.status))
   }
 
   reply (user, content, tid) {
