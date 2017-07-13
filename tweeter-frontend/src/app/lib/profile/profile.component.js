@@ -12,16 +12,17 @@ import templateUrl from 'profile/profile.template'
 
 const controller =
   class TwtrProfileController {
-    constructor ($log, profileService, localStorageService) {
+    constructor ($log, profileService, localStorageService, $state) {
       'ngInject'
-      // this.user = undefined
       this.service = profileService
+      this.$state = $state
       $log.debug('twtr-profile')
-      this.$log = $log
       this.localStorageService = localStorageService
     }
 
-    follow_btn_text = 'Follow'
+    get follow_btn_text () {
+      return this.service.updateFollowBtn(this.followers)
+    }
 
     get username () {
       return this.user.username
@@ -67,31 +68,34 @@ const controller =
       return this.service.isActiveUser(this.username)
     }
 
-    updateFollowBtn () {
-      this.follow_btn_text = this.service.updateFollowBtn(this.username)
+    // updateFollowBtn () {
+    //   return this.service.updateFollowBtn(this.followers)
+    // }
+
+    currUserFollowing () {
+      return this.service.currUserFollowing(this.followers)
     }
 
     followUser () {
       if (this.service.isLoggedOn()) {
-        this.service.followUser(this.username).then(this.$state.reload('profile'))
+        this.service.followUser(this.username).then(this.$state.reload())
       } else {
-        this.service.errorMessage = 'You Must Log In To Follow This User: ' + this.username
+        this.service.errorMessage = 'Log In To Follow This User: ' + this.username
         this.$log.log('Not Logged In To Follow This User: ' + this.username)
       }
     }
 
     unfollowUser () {
       if (this.service.isLoggedOn()) {
-        this.service.unfollowUser(this.username)
+        this.service.unfollowUser(this.username).then(this.$state.reload('profile'))
       } else {
-        this.service.errorMessage = 'Please Log In' + this.username
         this.$log.log('Not Logged In To Unfollow This User: ' + this.username)
       }
     }
 
-    userExists () {
-      return this.service.userExists()
-    }
+    // userExists () {
+    //   return this.service.userExists()
+    // }
 
     deleteUser () {
       this.service.deleteUser().then(this.$state.go('login'))
@@ -113,7 +117,12 @@ const controller =
     }
 
     updateUser () {
-      this.service.updateUser(this.firstName, this.lastName, this.phone)
+      this.service.updateUser(this.fName, this.lName, this.phone, this.email)
+      this.updateForm()
+    }
+
+    isLoggedOn () {
+      return this.service.isLoggedOn()
     }
 
   }
