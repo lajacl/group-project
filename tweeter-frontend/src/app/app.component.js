@@ -17,6 +17,7 @@ const controller = class TwtrAppController {
     this.$state = $state
     $log.debug('twtr-app ...')
     this.localStorageService = localStorageService
+    this.$log = $log
   }
 
   loggingOut () {
@@ -35,14 +36,19 @@ const controller = class TwtrAppController {
     }
   }
 
-  // Checks if a user is currently logged in
+  // checks if a user is currently logged in
   isLoggedOn () {
     return this.localStorageService.get('currentUser') !== null
   }
 
-  getProfileUrl () {
-    let currentUsername = this.localStorageService.get('currentUser').username
-    return '/profile/' + currentUsername
+  // move user to profile
+  goToProfile () {
+    if (this.isLoggedOn()) {
+      let currentUsername = this.localStorageService.get('currentUser').username
+      this.$state.go('profile', { username: currentUsername })
+    } else {
+      this.$state.go('profile')
+    }
   }
 
 }
