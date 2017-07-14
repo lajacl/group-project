@@ -29,10 +29,12 @@ const controller = class TwtrAppController {
   currSearch = 'Tag'
   search () {
     let input = this.searchInput
-    if (this.searchType === '#') {
-      this.$state.go('tag', {label: input}, {reload: true})
-    } else if (this.searchType === '@') {
-      this.$state.go('profile', {username: input}, {reload: true})
+    if (input != null) {
+      if (this.searchType === '#') {
+        this.$state.go('tag', {label: input}, {reload: true})
+      } else if (this.searchType === '@') {
+        this.$state.go('profile', {username: input}, {reload: true})
+      }
     }
   }
 
