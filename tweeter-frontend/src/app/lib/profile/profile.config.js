@@ -4,7 +4,7 @@
  * @Email:  crschmit@gmail.com
  * @Filename: profile.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-12T16:09:48-05:00
+ * @Last modified time: 2017-07-13T16:29:08-05:00
  */
 
 export const config =
@@ -24,6 +24,9 @@ export const config =
         },
         followers: function (profileService, $transition$) {
           return profileService.getUserFollowers($transition$.params().username)
+        },
+        exists: (loginService, $transition$) => {
+          return loginService.userDoesExists($transition$.params().username)
         }
       }
     })

@@ -17,12 +17,12 @@
               <h6>Posted: {{tweet.tweet.posted | date: 'fullDate'}}</h6>
             </div>
           </div>
-          <div class="btn-group tweet-opts">
-            <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.like()">Like</a>
-            <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ng-click="tweet.repost()">Repost</a>
-            <a ng-if="tweet.visibleToOwner()" class="btn btn-primary" ng-click="tweet.delete()">Delete</a>
-            <a ng-if="tweet.visibleToVisitors()" class="btn btn-primary" ui-sref="feed({ username: '' })">Login</a>
-            <a ng-if="tweet.visibleToAnyUser()" class="btn btn-primary" ui-sref="feed({ username: '' })">Feed</a>
+          <div class="btn-group btn-group-justified tweet-opts">
+            <a ng-if="tweet.visibleToAnyUser()" class="btn btn-default" ng-click="tweet.like()">Like</a>
+            <a ng-if="tweet.visibleToAnyUser()" class="btn btn-default" ng-click="tweet.repost()">Repost</a>
+            <a ng-if="tweet.visibleToOwner()" class="btn btn-default" ng-click="tweet.delete()">Delete</a>
+            <a ng-if="tweet.visibleToVisitors()" class="btn btn-default" ui-sref="feed({ username: '' })">Login</a>
+            <a ng-if="tweet.visibleToAnyUser()" class="btn btn-default" ui-sref="feed({ username: '' })">Feed</a>
           </div>
         </div>
         <div class="row">
@@ -33,8 +33,27 @@
           <div class="well panel panel-default" id="replies-panel">
             <div class="panel-heading">Replies</div>
             <div class="panel-body" ng-repeat="t in tweet.replies">
-              <simple-tweet twt="t" ui-sref="tweet({ tweetId: t.id })" ui-sref-active="active"></simple-tweet>
+              <!-- <simple-tweet twt="t" ui-sref="tweet({ tweetId: t.id })" ui-sref-active="active"></simple-tweet> -->
+              <!-- Anthony's tweet component -->
+              <div class="animate-repeat well panel panel-info col-xs-12">
+                  <div class="panel-header">
+                    <h2 class="panel-title" >
+                      <span class="btn btn-default btn-lg" ui-sref="profile({ username: t.author.username })" ui-sref-active="active">
+                        {{t.author.username}}
+                      </span>
+                      wrote this:
+                    </h2>
+                  </div>
+                <div class="row panel-body">
+                  <div class="well btn btn-default btn-lg col-xs-12" ui-sref="tweet({ tweetId: t.id })" ui-sref-active="active">
+                    {{t.content | limitTo : 70}}... <br> <small>(Click to read more)</small>
+                  </div>
+                </div>
+                <div class="panel-footer">Posted: {{t.posted | date: 'fullDate'}}</div>
+              </div>
             </div>
+            <!--  -->
+            <!-- Form to post replies to this tweet -->
             <div class="panel-footer" ng-if="tweet.visibleToAnyUser()">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Write a reply..." ng-model="tweet.replyContent">
@@ -47,11 +66,11 @@
         </div>
 
         <div class="row" id="info-btns">
-          <div class="btn-group tweet-info">
-            <a class="btn btn-primary" ui-sref="tweet.likes" ui-sref-active="active">Likes</a>
-            <a class="btn btn-primary" ui-sref="tweet.mentions" ui-sref-active="active">Mentions</a>
-            <a class="btn btn-primary" ui-sref="tweet.tags" ui-sref-active="active">Tags</a>
-            <a class="btn btn-primary" ui-sref="tweet.reposts" ui-sref-active="active">Reposts</a>
+          <div class="btn-group btn-group-justified tweet-info-btns">
+            <a class="btn btn-default" ui-sref="tweet.likes" ui-sref-active="active">Likes</a>
+            <a class="btn btn-default" ui-sref="tweet.mentions" ui-sref-active="active">Mentions</a>
+            <a class="btn btn-default" ui-sref="tweet.tags" ui-sref-active="active">Tags</a>
+            <a class="btn btn-default" ui-sref="tweet.reposts" ui-sref-active="active">Reposts</a>
           </div>
           <ui-view></ui-view>
         </div>
